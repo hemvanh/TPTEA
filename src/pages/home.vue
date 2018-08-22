@@ -1,94 +1,82 @@
 <template >
-<div>
-  <q-carousel class="component-top" style="max-width: 700px;margin:auto; height:300px" >
-    <q-carousel-slide img-src="assets/component.jpg">
-      <div class="absolute-top-left custom-caption-top">
-      <div class="q-display-1">Bring on the fruit</div>
-      <q-btn class="fixed-bottom-left btnlearn" rounded>
-        <q-item
-          v-for="modal in types"
-          :key="modal.label"
-          @click.native="modal.show()"
-        >
-          <q-item-main :label="modal.label" />
-        </q-item>
-      </q-btn>
-<!-- popup modal -->
-   <q-modal v-model="basicModal" :content-css="{minWidth: '48vw', minHeight: '86vh'}">
-      <q-modal-layout>
-        <q-scroll-observable @scroll="userHasScrolled" />
-        <div id="labels" class=" transbox">
-          <q-btn flat icon="close" @click="basicModal = false">
-            <div style="margin-left: 10px; text-transform: initial;">Bring on the fruit</div>
+  <div>
+    <q-carousel class="component-top" style="max-width: 700px;margin:auto; height:300px">
+      <q-carousel-slide img-src="assets/component.jpg">
+        <div class="absolute-top-left custom-caption-top">
+          <div class="q-display-1">Bring on the fruit</div>
+          <q-btn class="fixed-bottom-left btnlearn" rounded>
+            <q-item v-for="modal in types" :key="modal.label" @click.native="modal.show()">
+              <q-item-main :label="modal.label" />
+            </q-item>
           </q-btn>
+          <!-- popup modal -->
+          <q-modal v-model="basicModal" :content-css="{minWidth: '48vw', minHeight: '86vh'}">
+            <q-modal-layout>
+              <q-scroll-observable @scroll="userHasScrolled" />
+              <div id="labels" class=" transbox">
+                <q-btn flat icon="close" @click="basicModal = false">
+                  <div style="margin-left: 10px; text-transform: initial;">Bring on the fruit</div>
+                </q-btn>
+              </div>
+              <img src="assets/header-pop.jpg" alt="ww" style="width: 683px; height:300px">
+              <q-btn flat icon="close" class="absolute-top-left" @click="basicModal = false" style="color: white;" />
+              <div style="padding: 50px">
+                <div class="q-display-1 q-mb-md">Basic Modal</div>
+                <p v-for="n in 15" :key="`a-${n}`">Scroll down to close</p>
+                <q-btn to="/orders" class="Order" rounded>
+                  <div>Order</div>
+                </q-btn>
+              </div>
+            </q-modal-layout>
+          </q-modal>
+          <!-- popup modal -->
         </div>
-         <img src="assets/header-pop.jpg" alt="ww" style="width: 683px; height:300px">
-        <q-btn flat icon="close" class="absolute-top-left" @click="basicModal = false" style="color: white;"/>
-        <div style="padding: 50px">
-          <div class="q-display-1 q-mb-md">Basic Modal</div>
-          <p v-for="n in 15" :key="`a-${n}`">Scroll down to close</p>
-          <q-btn to="/orders" class="Order" rounded>
-            <div>Order</div>
+      </q-carousel-slide>
+    </q-carousel>
+    <q-carousel class="component-top" style="max-width: 700px;margin:auto; height:300px">
+      <q-carousel-slide img-src="assets/component-mid.jpg">
+        <div class="inner-top">Discover coffee</div>
+        <div class="absolute-top-left custom-caption-mid">
+          <div class="q-display-1">Find a new favorite</div>
+          <q-btn class="fixed-bottom-left btnlearn" rounded>
+            <q-item v-for="modal in types2" :key="modal.label2" @click.native="modal.show()">
+              <q-item-main :label="modal.label2" />
+            </q-item>
           </q-btn>
+          <!-- popup modal -->
+          <q-modal v-model="basicModal2" :content-css="{minWidth: '48vw', minHeight: '86vh'}">
+            <q-modal-layout>
+              <q-scroll-observable @scroll="userHasScrolled" />
+              <div id="labels" class=" transbox">
+                <q-btn flat icon="close" @click="basicModal2 = false">
+                  <div style="margin-left: 10px; text-transform: initial;">Bring on the fruit</div>
+                </q-btn>
+              </div>
+              <img src="assets/header-pop.jpg" alt="ww" style="width: 683px;">
+              <q-btn flat icon="close" class="absolute-top-left" @click="basicModal2 = false" style="color: white;" />
+              <div style="padding: 50px">
+                <div class="q-display-1 q-mb-md">Basic Modal</div>
+                <p v-for="n in 15" :key="`a-${n}`">Scroll down to close</p>
+                <q-btn to="/orders" class="Order" rounded>
+                  <div>Order</div>
+                </q-btn>
+              </div>
+            </q-modal-layout>
+          </q-modal>
+          <!-- popup modal -->
         </div>
-      </q-modal-layout>
-    </q-modal>
-  <!-- popup modal -->
-      </div>
-    </q-carousel-slide>
-  </q-carousel>
-  <q-carousel class="component-top" style="max-width: 700px;margin:auto; height:300px" >
-    <q-carousel-slide img-src="assets/component-mid.jpg">
-    <div class="inner-top">Discover coffee</div>
-      <div class="absolute-top-left custom-caption-mid">
-        <div class="q-display-1">Find a new favorite</div>
-      <q-btn class="fixed-bottom-left btnlearn" rounded>
-        <q-item
-          v-for="modal in types2"
-          :key="modal.label2"
-          @click.native="modal.show()"
-        >
-          <q-item-main :label="modal.label2" />
-        </q-item>
-      </q-btn>
-      <!-- popup modal -->
-   <q-modal v-model="basicModal2" :content-css="{minWidth: '48vw', minHeight: '86vh'}">
-      <q-modal-layout>
-        <q-scroll-observable @scroll="userHasScrolled" />
-        <div id="labels" class=" transbox">
-          <q-btn flat icon="close" @click="basicModal2 = false">
-            <div style="margin-left: 10px; text-transform: initial;">Bring on the fruit</div>
-          </q-btn>
-        </div>
-         <img src="assets/header-pop.jpg" alt="ww" style="width: 683px;">
-        <q-btn flat icon="close" class="absolute-top-left" @click="basicModal2 = false" style="color: white;"/>
-        <div style="padding: 50px">
-          <div class="q-display-1 q-mb-md">Basic Modal</div>
-          <p v-for="n in 15" :key="`a-${n}`">Scroll down to close</p>
-          <q-btn to="/orders" class="Order" rounded>
-            <div>Order</div>
-          </q-btn>
-        </div>
-      </q-modal-layout>
-    </q-modal>
-  <!-- popup modal -->
-      </div>
-    </q-carousel-slide>
-  </q-carousel>
-  <q-carousel class="component-top" style="max-width: 700px;margin:auto; height:300px" >
-    <q-carousel-slide img-src="assets/panel.jpg">
-    </q-carousel-slide>
-  </q-carousel>
-  <q-carousel>
-     <q-modal v-model="opened">
-    <h4>Basic Modal</h4>
-    <q-btn
-      color="primary"
-      @click="opened = false"
-      label="Close"
-    />
-  </q-modal>
-  </q-carousel>
+      </q-carousel-slide>
+    </q-carousel>
+    <q-carousel class="component-top" style="max-width: 700px;margin:auto; height:300px">
+      <q-carousel-slide img-src="assets/panel.jpg">
+      </q-carousel-slide>
+    </q-carousel>
+    <q-carousel>
+      <q-modal v-model="opened">
+        <h4>Basic Modal</h4>
+        <q-btn color="primary" @click="opened = false" label="Close" />
+      </q-modal>
+    </q-carousel>
   </div>
 </template>
 

@@ -98,7 +98,7 @@ module.exports = function(ctx) {
       ],
       directives: ['Ripple', 'CloseOverlay'],
       // Quasar plugins
-      plugins: ['Notify', 'AddressbarColor', 'Loading'],
+      plugins: ['Notify', 'AddressbarColor'],
       iconSet: 'material-icons',
       // i18n: 'de' // Quasar language
     },
