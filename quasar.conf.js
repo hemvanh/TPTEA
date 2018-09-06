@@ -1,4 +1,5 @@
 // Configuration for your app
+// import webpack from 'webpack'
 module.exports = function(ctx) {
   return {
     // app plugins (/src/plugins)
@@ -95,8 +96,12 @@ module.exports = function(ctx) {
         'QParallax',
         'QPageSticky',
         'QScrollObservable',
+        'QRadio',
+        'QToggle',
+        'QItemTile',
+        'QCollapsible',
       ],
-      directives: ['Ripple', 'CloseOverlay'],
+      directives: ['Ripple', 'CloseOverlay', 'BackToTop'],
       // Quasar plugins
       plugins: ['Notify', 'AddressbarColor'],
       iconSet: 'material-icons',
@@ -111,6 +116,7 @@ module.exports = function(ctx) {
       // workboxPluginMode: 'InjectManifest',
       workboxPluginMode: 'GenerateSW',
       // workboxOptions: {},
+      // workboxPluginMode: 'GenerateSW',
       manifest: {
         name: 'TP-Tea Hong Kong',
         short_name: 'TP-Tea',

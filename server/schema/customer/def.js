@@ -25,5 +25,13 @@ const Customer = `
     username: String!
     password: String!
   }
+  input RegInput {
+    username: String!
+    password: String!
+    passwordConfirm: String!
+    fullName: String,
+    phone: String
+    address:String
+  }
 `
 export default Customer

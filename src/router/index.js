@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import routes from './routes'
-
+import {isAuth} from '../util/common'
 Vue.use(VueRouter)
 
 /*
@@ -10,7 +10,7 @@ Vue.use(VueRouter)
  * directly export the Router instantiation
  */
 
-export default function(/* { store, ssrContext } */) {
+export default function({store}) {
   const Router = new VueRouter({
     scrollBehavior: () => ({y: 0}),
     routes,
@@ -21,5 +21,39 @@ export default function(/* { store, ssrContext } */) {
     base: process.env.VUE_ROUTER_BASE,
   })
 
+  Router.beforeEach((to, _, next) => {
+    // routing page by authenticate token
+    if (isAuth()) {
+      store.commit('member/setIsHiddenRegBtn', true)
+      if (to.path === '/member') {
+        next()
+        // prevent route to register page
+      } else if (to.path === '/member/register' || to.path === '/member/login') {
+        next('/member')
+      } else next()
+    } else {
+      // handle state show/hide register button
+      switch (to.path) {
+        case '/':
+        case '/stores':
+        case '/orders':
+        case '/member':
+        case '/member/login':
+          store.commit('member/setIsHiddenRegBtn', false)
+          break
+        default:
+          store.commit('member/setIsHiddenRegBtn', true)
+          break
+      }
+      // handle routing part
+      if (
+        to.path === '/member/register' ||
+        to.path === '/member/login' ||
+        (to.path !== '/member/login' && to.path !== '/member') // prevent route to member page
+      ) {
+        next()
+      } else next('/member/login')
+    }
+  })
   return Router
 }

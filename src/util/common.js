@@ -1,3 +1,4 @@
+// remove the abundant "data" key from grahql response
 import axios from 'axios'
 import {Notify} from 'quasar'
 
@@ -58,4 +59,8 @@ export const _procAlert = data => {
 export const _procError = err => {
   if (err.response) _alert(`Code: ${err.response.status} - ${err.response.statusText}`, 'negative')
   else _alert(`Code: ${err.message}`, 'negative')
+}
+
+export function isAuth() {
+  return !!localStorage.getItem('auth-token')
 }

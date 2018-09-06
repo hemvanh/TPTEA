@@ -1,6 +1,7 @@
 import {Customer} from '../../models'
 import GraphQLDate from 'graphql-date'
 import bcrypt from 'bcrypt'
+const SALT = 10
 import jwt from 'jsonwebtoken'
 import {_auth} from '../../util'
 
@@ -24,6 +25,7 @@ const resolvers = {
       }
       return jwt.sign(
         {
+          id: user.id,
           username: user.username,
           name: user.name,
           add: user.add,
@@ -34,6 +36,29 @@ const resolvers = {
         process.env.JWT_SECRET,
         {expiresIn: '1y'}
       )
+    },
+    async reg(_, {input}) {
+      var user = await Customer.findOne({where: {username: input.username}})
+      if (user) {
+        throw new Error('Account is existed!')
+      }
+      input.password = bcrypt.hashSync(input.password, SALT)
+      return await Customer.upsert(input).then(async function() {
+        user = await Customer.findOne({where: {username: input.username}})
+        return jwt.sign(
+          {
+            id: user.id,
+            username: user.username,
+            name: user.name,
+            add: user.add,
+            phone: user.phone,
+            balance: user.balance,
+            points: user.points,
+          },
+          process.env.JWT_SECRET,
+          {expiresIn: '1y'}
+        )
+      })
     },
   },
 }
