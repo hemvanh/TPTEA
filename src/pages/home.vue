@@ -22,8 +22,8 @@ export default {
           isBtnHidden: false,
           label: 'Learn More',
           title: 'Bring on the fruit',
-          titleContent: 'Top choice for tea to-go',
           subTitle: `What's New`,
+          titleContent: 'Top choice for tea to-go',
           content: `TP TEA has cultivated the various segments of the Taiwanese market,
            from cities to suburbs, from the main island to outlying islands and from major
             public transportation hubs to department stores. 
