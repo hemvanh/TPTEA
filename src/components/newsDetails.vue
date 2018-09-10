@@ -8,8 +8,8 @@
       </div>
       <q-carousel-slide :img-src="item.img" style="height:300px"/>
       <div style="padding: 50px">
-        <div class="q-display-1 q-mb-md">{{item.titlecont}}</div>
-        <p>{{item.cont}}</p>
+        <div class="q-display-1 q-mb-md">{{item.titleContent}}</div>
+        <p>{{item.content}}</p>
         <q-btn  to="/orders" color="green" class="Order" rounded>
           <div>Order</div>
         </q-btn>
