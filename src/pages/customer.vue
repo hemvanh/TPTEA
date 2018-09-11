@@ -1,9 +1,9 @@
 <template>
-  <div>Member</div>
+  <div>Customer</div>
 </template>
 <script>
 export default {
-  name: 'PageMember',
+  name: 'PageCustomer',
 }
 </script>
 <style>
