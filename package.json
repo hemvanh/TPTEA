@@ -11,13 +11,14 @@
     "test": "echo \"No test specified\" && exit 0",
     "dev": "cd server && npx babel-node server | quasar dev",
     "api": "cd server && npx babel-node server",
-    "build": "quasar build -m pwa && cd server && gulp es6",
+    "build": "quasar build -m pwa && cd server && npx gulp es6",
     "pushlive": "git add -A && git commit -m\"$*\" && git push origin master && git subtree push --prefix dist/pwa-mat origin live",
     "deploy": "npm run build && npm run pushlive"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "bcrypt": "^3.0.0",
+    "lodash": "^4.17.10",
     "vivus": "^0.4.4",
     "vue-i18n": "^7.3.3",
     "vuelidate": "^0.7.4"

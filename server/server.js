@@ -23,12 +23,12 @@ app.use(
     schema,
     context: {
       // can access from resolvers, for when token is attached to axios Authorization header
-      authUser: req.user,
+      authCustomer: req.user,
     },
   }))
 )
 app.use('/graphiql', graphiqlExpress({endpointURL: 'api'}))
 
 app.listen(process.env.PORT || APP_PORT, () => {
-  console.log(`VLXD_API listening on port ${APP_PORT} ...`)
+  console.log(`TPTEA_API listening on port ${APP_PORT} ...`)
 })

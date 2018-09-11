@@ -1,82 +1,57 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-layout-header>
-      <q-toolbar
-        color="primary"
-        :glossy="$q.theme === 'mat'"
-        :inverted="$q.theme === 'ios'"
-      >
-        <q-btn
-          flat
-          dense
-          round
-          @click="leftDrawerOpen = !leftDrawerOpen"
-          aria-label="Menu"
-        >
-          <q-icon name="menu" />
-        </q-btn>
-
-        <q-toolbar-title>
-          Quasar App
-          <div slot="subtitle">Running on Quasar v{{ $q.version }}</div>
-        </q-toolbar-title>
-      </q-toolbar>
-    </q-layout-header>
-
-    <q-layout-drawer
-      v-model="leftDrawerOpen"
-      :content-class="$q.theme === 'mat' ? 'bg-grey-2' : null"
-    >
-      <q-list
-        no-border
-        link
-        inset-delimiter
-      >
-        <q-list-header>Essential Links</q-list-header>
-        <q-item @click.native="openURL('http://quasar-framework.org')">
-          <q-item-side icon="school" />
-          <q-item-main label="Docs" sublabel="quasar-framework.org" />
-        </q-item>
-        <q-item @click.native="openURL('https://github.com/quasarframework/')">
-          <q-item-side icon="code" />
-          <q-item-main label="GitHub" sublabel="github.com/quasarframework" />
-        </q-item>
-        <q-item @click.native="openURL('https://discord.gg/5TDhbDg')">
-          <q-item-side icon="chat" />
-          <q-item-main label="Discord Chat Channel" sublabel="https://discord.gg/5TDhbDg" />
-        </q-item>
-        <q-item @click.native="openURL('http://forum.quasar-framework.org')">
-          <q-item-side icon="record_voice_over" />
-          <q-item-main label="Forum" sublabel="forum.quasar-framework.org" />
-        </q-item>
-        <q-item @click.native="openURL('https://twitter.com/quasarframework')">
-          <q-item-side icon="rss feed" />
-          <q-item-main label="Twitter" sublabel="@quasarframework" />
-        </q-item>
-      </q-list>
-    </q-layout-drawer>
-
-    <q-page-container>
+  <q-layout view="hhh lpr fFf">
+    <q-layout-footer class="max-width-center">
+      <q-tabs inverted position="bottom" color="brown-6" align="justify">
+        <q-route-tab to="/" default name="news" slot="title" icon="stars" label="Home" />
+        <q-route-tab to="/categories" name="categories" slot="title" icon="free_breakfast" label="Order" />
+        <q-route-tab to="/stores" name="account" slot="title" icon="store" label="Store" />
+        <q-route-tab to="/member" name="member" slot="title" icon="account_box" label="Member" />
+      </q-tabs>
+    </q-layout-footer>
+    <q-btn rounded color="green" to="/customer/register" label="Join now" class="btn-reg" :class="{hidden: getIsHiddenRegBtn}" />
+    <q-page-container class="et-home max-width-center">
       <router-view />
     </q-page-container>
   </q-layout>
 </template>
-
 <script>
-import {openURL} from 'quasar'
-
+import {mapGetters} from 'vuex'
 export default {
   name: 'MyLayout',
   data() {
-    return {
-      leftDrawerOpen: this.$q.platform.is.desktop,
-    }
+    return {}
   },
-  methods: {
-    openURL,
+  computed: {
+    ...mapGetters('customer', ['getIsHiddenRegBtn']),
   },
+  methods: {},
 }
 </script>
-
 <style>
+.et-home {
+  overflow: auto;
+  height: calc(100vh - 65px) !important;
+}
+.q-layout-page-container {
+  padding-bottom: 0px !important;
+}
+.max-width-center {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.btn-reg {
+  text-transform: none;
+  font-size: 14px !important;
+  padding: 13px 25px;
+  display: block;
+  z-index: 9999;
+  position: fixed;
+  bottom: 70px;
+  right: calc((100vw - 700px)/2);
+}
+@media only screen and (max-device-width : 700px) {
+  .btn-reg{
+    right:0
+  }
+}
 </style>
