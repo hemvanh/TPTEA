@@ -1,6 +1,6 @@
 <template>
-  <q-page class="row gutter-xs content-start et-menu-cat">
-    <comp-cat v-for="(dataCat,index) in getRecsCategory" :key="index" :dataCat="dataCat"></comp-cat>
+  <q-page class="row">
+    <comp-cat v-for="(cat,index) in getRecs" :key="index" :cat="cat"></comp-cat>
   </q-page>
 </template>
 <script>
@@ -12,20 +12,15 @@ export default {
     compCat,
   },
   computed: {
-    ...mapGetters('category', ['getRecsCategory']),
+    ...mapGetters('category', ['getRecs']),
   },
   methods: {
-    ...mapActions('category', ['fetchCategory']),
+    ...mapActions('category', ['fetchRecs']),
   },
   mounted() {
-    this.fetchCategory()
+    this.fetchRecs()
   },
 }
 </script>
 <style scoped>
-.et-menu-cat {
-  padding: 0 8px 8px 0;
-  max-width: 560px;
-  margin: auto;
-}
 </style>

@@ -1,3 +1,3 @@
-export const getRecsCategory = state => {
-  return state.recsCategory
+export const getRecs = state => {
+  return state.recs
 }

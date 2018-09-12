@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import customer from './customer'
 import category from './category'
+import menu from './menu'
 
 Vue.use(Vuex)
 
@@ -16,6 +17,7 @@ export default function(/* { ssrContext } */) {
     modules: {
       customer,
       category,
+      menu,
     },
   })
 

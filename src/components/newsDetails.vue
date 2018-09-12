@@ -1,5 +1,5 @@
 <template>
-  <q-modal v-model="opened" style="max-width: 700px; margin:auto">
+  <q-modal v-model="opened" style="max-width: 601px; margin:auto">
     <q-modal-layout >
       <div>
         <q-btn flat icon="close" @click="opened = false" >
@@ -10,7 +10,7 @@
       <div style="padding: 50px">
         <div class="q-display-1 q-mb-md">{{item.titleContent}}</div>
         <p>{{item.content}}</p>
-        <q-btn  to="/orders" color="green" class="Order" rounded>
+        <q-btn to="/orders" color="green" class="Order" rounded>
           <div>Order</div>
         </q-btn>
       </div>

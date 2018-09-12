@@ -24,7 +24,7 @@ module.exports = {
     // console.log(data)
     return queryInterface.bulkInsert(
       'menus',
-      _d.map(data, row => _d.pick(row, ['id', 'name', 'desc', 'price', 'pic'])),
+      _d.map(data, row => _d.pick(row, ['id', 'name', 'desc', 'price', 'img'])),
       {}
     )
   },

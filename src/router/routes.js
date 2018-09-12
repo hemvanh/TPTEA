@@ -1,4 +1,5 @@
 import pgCats from 'pages/Pgcats'
+import pgMenus from 'pages/PgMenus'
 import pgStore from 'pages/store'
 import pgHome from 'pages/home'
 import pgCustomer from 'pages/customer'
@@ -17,6 +18,10 @@ const routes = [
       {
         path: 'categories',
         component: pgCats,
+      },
+      {
+        path: 'menus/:catId',
+        component: pgMenus,
       },
       {
         path: 'stores',
@@ -39,6 +44,10 @@ const routes = [
             component: pgRegister,
           },
         ],
+      },
+      {
+        path: 'menus/:catId',
+        component: pgMenus,
       },
     ],
   },

@@ -1,3 +1,3 @@
-export const setRecsCategory = (state, payload) => {
-  state.recsCategory = payload
+export const setRecs = (state, payload) => {
+  state.recs = payload
 }

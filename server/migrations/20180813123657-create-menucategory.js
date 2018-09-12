@@ -1,24 +1,26 @@
 'use strict'
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('menus', {
+    return queryInterface.createTable('menucategory', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
-        type: Sequelize.STRING,
+      menuId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'menus',
+          key: 'id',
+        },
       },
-      desc: {
-        type: Sequelize.STRING,
-      },
-      price: {
-        type: Sequelize.STRING,
-      },
-      img: {
-        type: Sequelize.STRING,
+      categoryId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'categories',
+          key: 'id',
+        },
       },
       createdAt: {
         allowNull: false,
@@ -33,6 +35,6 @@ module.exports = {
     })
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('menus')
+    return queryInterface.dropTable('menucategory')
   },
 }

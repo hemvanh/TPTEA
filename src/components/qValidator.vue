@@ -22,7 +22,7 @@ export default {
   },
 }
 </script>
-<style>
+<style scoped>
 .et-validator-error {
   padding: 10px;
   font-size: 12px;

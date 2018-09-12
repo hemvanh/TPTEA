@@ -27,7 +27,7 @@ export default {
   methods: {},
 }
 </script>
-<style>
+<style scoped>
 .et-home {
   overflow: auto;
   height: calc(100vh - 65px) !important;
@@ -36,7 +36,7 @@ export default {
   padding-bottom: 0px !important;
 }
 .max-width-center {
-  max-width: 700px;
+  max-width: 601px;
   margin: 0 auto;
 }
 .btn-reg {
@@ -47,9 +47,9 @@ export default {
   z-index: 9999;
   position: fixed;
   bottom: 70px;
-  right: calc((100vw - 700px)/2);
+  right: calc((100vw - 601px)/2);
 }
-@media only screen and (max-device-width : 700px) {
+@media only screen and (max-device-width : 601px) {
   .btn-reg{
     right:0
   }
