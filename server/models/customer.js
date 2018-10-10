@@ -4,12 +4,13 @@ module.exports = (sequelize, DataTypes) => {
     'Customer',
     {
       name: DataTypes.STRING,
-      add: DataTypes.STRING,
+      address: DataTypes.STRING,
       phone: DataTypes.STRING,
       username: DataTypes.STRING,
       password: DataTypes.STRING,
       balance: DataTypes.FLOAT,
       points: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
     {}
   )

@@ -33,3 +33,7 @@ seed() {
   sequelize db:seed:all
   cd ..
 }
+
+testcafe() {
+  npm run test
+}

@@ -1,5 +1,4 @@
 // Configuration for your app
-
 module.exports = function(ctx) {
   return {
     // app plugins (/src/plugins)
@@ -26,7 +25,7 @@ module.exports = function(ctx) {
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules|quasar)/,
+          exclude: /node_modules/,
         })
       },
     },
@@ -58,7 +57,7 @@ module.exports = function(ctx) {
         'QItem',
         'QItemMain',
         'QItemSide',
-        // VLXD
+        // TPTEA
         'QSearch',
         'QTable',
         'QAlert',
@@ -83,6 +82,25 @@ module.exports = function(ctx) {
         'QCardSeparator',
         'QCardActions',
         'QItemSeparator',
+        'QSpinnerBars',
+
+        // TPTEA
+        'QTabs',
+        'QTab',
+        'QTabPane',
+        'QRouteTab',
+        'QCarousel',
+        'QCarouselSlide',
+        'QCarouselControl',
+        'QParallax',
+        'QPageSticky',
+        'QScrollObservable',
+        'QCollapsible',
+        'QItemTile',
+        'QCheckbox',
+        'QRadio',
+        'QBtnGroup',
+        'QToggle',
       ],
       directives: ['Ripple', 'CloseOverlay'],
       // Quasar plugins
@@ -97,14 +115,15 @@ module.exports = function(ctx) {
     },
     pwa: {
       // workboxPluginMode: 'InjectManifest',
+      workboxPluginMode: 'GenerateSW',
       // workboxOptions: {},
       manifest: {
-        // name: 'Quasar App',
-        // short_name: 'Quasar-PWA',
-        // description: 'Best PWA App in town!',
+        name: 'TP-Tea Hong Kong',
+        short_name: 'TP-Tea',
+        description: 'TP-Tea. The Best Tea in town!',
         display: 'standalone',
         orientation: 'portrait',
-        background_color: '#ffffff',
+        background_color: '#F6F3EC',
         theme_color: '#027be3',
         icons: [
           {

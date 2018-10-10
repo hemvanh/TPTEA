@@ -17,10 +17,10 @@ module.exports = {
     operatorsAliases: aliases,
     pool: {
       port: 3306,
-      max: 5,
+      max: 50,
       min: 1,
       accquire: 60000,
-      idle: 20000,
+      idle: 15000,
     },
   },
   production: {

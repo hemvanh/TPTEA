@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import example from './module-example'
+import customer from './customer'
+import category from './category'
+import menu from './menu'
+import modifier from './modifier'
 
 Vue.use(Vuex)
 
@@ -13,7 +16,10 @@ Vue.use(Vuex)
 export default function(/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      example,
+      customer,
+      category,
+      menu,
+      modifier,
     },
   })
 

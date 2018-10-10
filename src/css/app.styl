@@ -1,1 +1,14 @@
 // app global css
+@import '~variables'
+
+// disable default pull to refresh on chrome
+body
+  overscroll-behavior-y contain
+
+.max-width-center-h
+  max-width $breakpoint-xs
+  margin 0 auto
+
+.max-width-center-vh
+  max-width $breakpoint-xs
+  margin auto
