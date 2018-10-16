@@ -24,6 +24,7 @@ const RootQuery = `
     listCategories: [Category]
     listMenus(input:CategoryInput): [Menu]
     fetchModifiers(input:MenuInput): [Modify]
+    getAdmin(input:Int): Admin
   }
 `
 
@@ -38,6 +39,6 @@ const RootMutation = `
 `
 
 export default makeExecutableSchema({
-  typeDefs: [SchemaDefinition, RootQuery, RootMutation, customerDef, categoryDef, menuDef, modifyDef,adminDef],
-  resolvers: [customerRes, categoryRes, menuRes, modifyRes,adminRes],
+  typeDefs: [SchemaDefinition, RootQuery, RootMutation, customerDef, categoryDef, menuDef, modifyDef, adminDef],
+  resolvers: [customerRes, categoryRes, menuRes, modifyRes, adminRes],
 })

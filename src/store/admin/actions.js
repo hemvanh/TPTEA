@@ -1,4 +1,4 @@
-import {_procError, _ax, _post, _alert} from '../../util/common'
+import {_procError, _ax, _post, _alert, _get} from '../../util/common'
 
 export function loginAdmin({commit}, payload) {
   commit('setIsLoading', true)
@@ -23,5 +23,19 @@ export function loginAdmin({commit}, payload) {
     .catch(err => {
       _procError(err)
       commit('setIsLoading', false)
+    })
+}
+export const fetchAdmin = ({commit}) => {
+  _get(`{
+    getAdmin {
+      username
+    }
+  }`)
+    .then(({data}) => {
+      if (data.errors) _alert(data.errors[0].message, 'warning')
+      else commit('setAdmin', data.getAdmin)
+    })
+    .catch(err => {
+      _procError(err)
     })
 }
