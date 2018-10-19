@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
 - Admin Default layout & Login
 - Customer Detail Page with Sign-Out feaature
 - Schema Admin (res loginAdmin,def type Admin,input AdminLoginInput)[@john]
-- Admin validator
+- Admin Login validator
 ### Removed 
 - Join now button
 ### Fixed
