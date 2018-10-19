@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 import {_authAdmin} from '../../util'
 const resolvers = {
   RootQuery: {
-    async getAdmin(_, __, {loggedInUser}) {
+    async fetchAdmin(_, __, {loggedInUser}) {
       _authAdmin(loggedInUser)
       return await Admin.findById(loggedInUser.id)
     },

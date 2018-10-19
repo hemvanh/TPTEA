@@ -24,7 +24,7 @@ const RootQuery = `
     listCategories: [Category]
     listMenus(input:CategoryInput): [Menu]
     fetchModifiers(input:MenuInput): [Modify]
-    getAdmin(input:Int): Admin
+    fetchAdmin(input:Int): Admin
   }
 `
 

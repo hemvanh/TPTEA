@@ -27,13 +27,13 @@ export function loginAdmin({commit}, payload) {
 }
 export const fetchAdmin = ({commit}) => {
   _get(`{
-    getAdmin {
+    fetchAdmin {
       username
     }
   }`)
     .then(({data}) => {
       if (data.errors) _alert(data.errors[0].message, 'warning')
-      else commit('setAdmin', data.getAdmin)
+      else commit('setAdmin', data.fetchAdmin)
     })
     .catch(err => {
       _procError(err)
