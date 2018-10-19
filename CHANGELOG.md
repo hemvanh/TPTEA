@@ -39,4 +39,4 @@ All notable changes to this project will be documented in this file.
 - Categories Listing page
 - Logins fields validation
 - Login admin
-- Fetch admin
+- Fetch admin -> fetch Admin info (username) and show to admin default logged in page
