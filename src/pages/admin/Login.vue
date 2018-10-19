@@ -14,10 +14,10 @@
       <et-validator :dirty="$v.password.$dirty" :show="!$v.password.required" msg="Password is required" />
     </q-card-main>
     <q-card-actions>
-      <div class="row justify-center" style="height:60px;width:100%;">
+      <div class="row justify-center btn-signin">
         <q-btn :loading="getIsLoading" color="secondary" label="Sign In" class="text-secondary q-ma-sm col-10" @click="login({username,password,type:'password'})">
           <q-spinner-pie slot="loading" size="25px" />
-        </q-btn>
+        </q-btn> 
       </div>
     </q-card-actions>
   </q-card>
@@ -109,4 +109,8 @@ export default {
 @media (min-width: $breakpoint-xs)
   .q-card-actions
     height 100px !important
+
+.btn-signin
+  height 60px
+  width 100%  
 </style>
