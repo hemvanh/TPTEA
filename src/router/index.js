@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import routes from './routes'
-import {isAuth} from '../util/common'
+import {getUserType} from '../util/common'
 Vue.use(VueRouter)
 
 /*
@@ -22,23 +22,79 @@ export default function({store}) {
   })
 
   Router.beforeEach((to, _, next) => {
-    // routing page by authenticate token
-    if (isAuth()) {
-      if (to.path === '/customer') {
-        next()
-        // prevent route to register page
-      } else if (to.path === '/customer/register' || to.path === '/customer/login') {
-        next('/customer')
-      } else next()
-    } else {
-      // handle routing part
-      if (
-        to.path === '/customer/register' ||
-        to.path === '/customer/login' ||
-        (to.path !== '/customer/login' && to.path !== '/customer') // prevent route to customer page
-      ) {
-        next()
-      } else next('/customer/login')
+    let toPath = to.path
+    switch (getUserType()) {
+      case 'c': // user is CUSTOMER
+        switch (toPath) {
+          case '/customer':
+          case '/customer/':
+            next()
+            break
+          case '/':
+          case '/customer/login':
+          case '/customer/register':
+            next('/customer')
+            break
+          default:
+            next()
+            break
+        }
+        // prevent customer user route to admin's path
+        if (toPath.substr(0, 6) === '/admin') next('/customer')
+        break
+      case 'a': // user is ADMIN
+        switch (toPath) {
+          case '/admin':
+          case '/admin/':
+            next()
+            break
+          case '/':
+          case '/admin/login':
+          case '/categories':
+            next('/admin')
+            break
+          default:
+            next()
+            break
+        }
+        // prevent admin user route to customer's path
+        if (toPath.substr(0, 9) === '/customer') next('/admin')
+        break
+      default:
+        // use is ANONYMOUS
+        // recognize route of custmer user
+        if (toPath.substr(0, 9) === '/customer') {
+          switch (toPath) {
+            case '/customer/register':
+            case '/customer/register/':
+            case '/customer/login':
+            case '/categories':
+              next()
+              break
+            default:
+              next('/customer/login')
+              break
+          }
+          // recognize route of admin user
+        } else if (toPath.substr(0, 6) === '/admin') {
+          switch (toPath) {
+            case '/admin':
+            case '/admin/':
+              next('/admin/login')
+              break
+            case '/admin/login':
+            case '/admin/login/':
+              next()
+              break
+            default:
+              next('/admin/login')
+              break
+          }
+        } else {
+          // route to common page(ex: home, categories...etc)
+          next()
+        }
+        break
     }
   })
 

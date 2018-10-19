@@ -25,6 +25,7 @@ const RootQuery = `
     listMenus(input:CategoryInput): [Menu]
     fetchModifiers(input:MenuInput): [Modify]
     fetchAdmin(input:Int): Admin
+    fetchCustomers: [Customer]
   }
 `
 
@@ -35,6 +36,8 @@ const RootMutation = `
     loginFb(input:LoginInput): String
     registerFb(input:RegisterInput): RegisterFbResponse
     loginAdmin(input:AdminLoginInput): String
+    deleteCustomers(input:[Int]): Int
+    updateCustomer(input:CustomerInput): Customer
   }
 `
 

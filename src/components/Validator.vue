@@ -1,6 +1,6 @@
 <template>
   <div v-if="dirty">
-    <div class="et-validator-error" v-if="show">{{msg}}</div>
+    <div class="et-validator-error text-left" v-if="show">{{msg}}</div>
   </div>
 </template>
 <script>
