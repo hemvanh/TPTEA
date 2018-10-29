@@ -32,3 +32,19 @@ export const genGiftCard = (amount, expiry) => {
     process.env.JWT_GIFT_SECRET
   )
 }
+
+export const authGiftCard = jwtGiftCard => {
+  var jwtdecoded = jwt.verify(jwtGiftCard, process.env.JWT_GIFT_SECRET)
+  var dateExpired = new Date().getTime() - jwtdecoded.createdDate
+  var isExpired = false
+  if (convertDateToMil(jwtdecoded.expiry) < dateExpired) {
+    isExpired = true
+  }
+  return {
+    jwt: jwtdecoded,
+    isExpired,
+  }
+}
+export const convertDateToMil = date => {
+  return date * (24 * 60 * 60 * 1000)
+}
