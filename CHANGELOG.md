@@ -17,7 +17,7 @@ All notable changes to this project will be documented in this file.
 - Admin Login validator
 - Generate gift card QR
 - Topup page
-- auth gift card
+- Authenticate a GiftCard utility function
 ### Removed 
 - Join now button
 ### Fixed
