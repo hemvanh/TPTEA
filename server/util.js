@@ -25,7 +25,7 @@ export const genGiftCard = (amount, expiry) => {
   return jwt.sign(
     {
       guid: uuidv4(),
-      createdDate: 1540530472000,
+      createdDate: new Date().getTime(),
       amount,
       expiry,
     },
@@ -38,7 +38,7 @@ export const authGiftCard = jwtGiftCard => {
   var elapsedTime = new Date().getTime() - giftCard.createdDate
   let expired = giftCard.expiry * 86400000 < elapsedTime
   return {
-    jwt: giftCard,
+    giftCard,
     expired,
   }
 }
