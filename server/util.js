@@ -34,17 +34,14 @@ export const genGiftCard = (amount, expiry) => {
 }
 
 export const authGiftCard = jwtGiftCard => {
-  var jwtdecoded = jwt.verify(jwtGiftCard, process.env.JWT_GIFT_SECRET)
-  var dateExpired = new Date().getTime() - jwtdecoded.createdDate
+  var giftCard = jwt.verify(jwtGiftCard, process.env.JWT_GIFT_SECRET)
+  var elapsedTime = new Date().getTime() - giftCard.createdDate
   var isExpired = false
-  if (convertDateToMil(jwtdecoded.expiry) < dateExpired) {
+  if (giftCard.expiry * 86400000 < elapsedTime) {
     isExpired = true
   }
   return {
-    jwt: jwtdecoded,
+    jwt: giftCard,
     isExpired,
   }
-}
-export const convertDateToMil = date => {
-  return date * (24 * 60 * 60 * 1000)
 }
