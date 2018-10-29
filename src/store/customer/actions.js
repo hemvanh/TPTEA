@@ -1,4 +1,4 @@
-import {_procError, _ax, _post, _alert, _get, _procAlert} from '../../util/common'
+import {_procError, _ax, _post, _get, _procAlert} from '../../util/common'
 import _ from 'lodash'
 export function loginCustomer({commit}, payload) {
   commit('setIsLoading', true)
@@ -10,13 +10,12 @@ export function loginCustomer({commit}, payload) {
   )
     .then(({data}) => {
       commit('setIsLoading', false)
-      if (data.errors) _alert(data.errors[0].message, 'warning')
-      else {
+      _procAlert(data, 'Logged In Successfully!')
+      if (!data.errors) {
         // Login successfully
         localStorage.setItem('auth-token', data.login)
         commit('setToken', data.login)
         _ax.defaults.headers.common['Authorization'] = 'Bearer ' + data.login
-        _alert(`Logged In Successfully!`, 'positive')
         this.$router.push('/customer')
       }
     })
@@ -36,13 +35,12 @@ export function regCustomer({commit}, payload) {
   )
     .then(({data}) => {
       commit('setIsLoading', false)
-      if (data.errors) _alert(data.errors[0].message, 'warning')
-      else {
+      _procAlert(data, 'Regitered Successfully!')
+      if (!data.errors) {
         // register successfully
         localStorage.setItem('auth-token', data.register)
         commit('setToken', data.register)
         _ax.defaults.headers.common['Authorization'] = 'Bearer ' + data.register
-        _alert(`Regitered Successfully!`, 'positive')
         this.$router.push('/customer')
       }
     })
@@ -52,7 +50,7 @@ export function regCustomer({commit}, payload) {
     })
 }
 
-export async function loginFb({commit}, payload) {
+export async function loginFb({commit}) {
   var user = await getUserFbInfo()
   _post(
     {
@@ -65,13 +63,12 @@ export async function loginFb({commit}, payload) {
     }`
   )
     .then(({data}) => {
-      if (data.errors) _alert(data.errors[0].message, 'warning')
-      else {
+      _procAlert(data, 'Logged In Successfully!')
+      if (!data.errors) {
         // Login successfully
         localStorage.setItem('auth-token', data.loginFb)
         commit('setToken', data.loginFb)
         _ax.defaults.headers.common['Authorization'] = 'Bearer ' + data.loginFb
-        _alert(`Logged In Successfully!`, 'positive')
         this.$router.push('/customer')
       }
     })
@@ -99,13 +96,12 @@ export async function registerFb({commit}) {
     }`
   )
     .then(({data}) => {
-      if (data.errors) _alert(data.errors[0].message, 'warning')
-      else {
+      _procAlert(data, data.registerFb.msg)
+      if (!data.errors) {
         // register successfully
         localStorage.setItem('auth-token', data.registerFb.token)
-        commit('setToken', data.regFB)
+        commit('setToken', data.registerFb)
         _ax.defaults.headers.common['Authorization'] = 'Bearer ' + data.registerFb.token
-        _alert(data.registerFb.msg, 'positive')
         this.$router.push('/customer')
       }
     })
@@ -136,8 +132,8 @@ export const fetchCustomer = ({commit}) => {
     }
   }`)
     .then(({data}) => {
-      if (data.errors) _alert(data.errors[0].message, 'warning')
-      else commit('setCustomer', data.getCustomer)
+      _procAlert(data, true)
+      commit('setCustomer', data.getCustomer)
     })
     .catch(err => {
       _procError(err)
@@ -159,7 +155,7 @@ export const fetchCustomers = ({commit}) => {
     }
   }`)
     .then(({data}) => {
-      _procAlert(data)
+      _procAlert(data, true)
       commit('setRecs', data.fetchCustomers)
       commit('setIsLoading', false)
     })
@@ -178,7 +174,7 @@ export const delCustomers = ({commit, getters}) => {
       deleteCustomers(input: $input)
     }`
   ).then(({data}) => {
-    _procAlert(data)
+    _procAlert(data, true)
     commit('setIsLoading', false)
     _.remove(getters.getRecs, rec => {
       return ids.includes(rec.id)
@@ -208,7 +204,7 @@ export const updateCustomer = ({commit, getters}) => {
     }`
   )
     .then(({data}) => {
-      _procAlert(data)
+      _procAlert(data, true)
       commit('setIsLoading', false)
       commit('setIsModalOpened', false)
     })
@@ -237,7 +233,7 @@ export function createCustomer({commit, getters}) {
   )
     .then(({data}) => {
       commit('setIsLoading', false)
-      _procAlert(data)
+      _procAlert(data, true)
       commit('setIsModalOpened', false)
       getters.getRecs.push(data.createCustomer)
       commit('setRecs', _.clone(getters.getRecs))
