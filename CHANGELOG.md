@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file.
 - Demo QR code scanner
 - Admin Login validator
 - Generate gift card QR
+- Topup page
 ### Removed 
 - Join now button
 ### Fixed

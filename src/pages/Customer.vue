@@ -18,6 +18,11 @@
           <q-item-tile color="secondary">{{'$'+getCustomer.balance}}</q-item-tile>
         </q-item-side>
       </q-item>
+      <q-item class="q-pt-md q-pb-md" to="/customer/topup" link>
+        <q-item-side icon="credit_card" />
+        <q-item-main label="Topup" />
+        <q-item-side right icon="keyboard_arrow_right" />
+      </q-item>
       <q-item class="q-pt-md q-pb-md" link>
         <q-item-side icon="hourglass_empty" />
         <q-item-main label="Order History" />

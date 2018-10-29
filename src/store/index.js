@@ -6,7 +6,7 @@ import category from './category'
 import menu from './menu'
 import modifier from './modifier'
 import admin from './admin'
-
+import giftcard from './giftcard'
 Vue.use(Vuex)
 
 /*
@@ -22,6 +22,7 @@ export default function(/* { ssrContext } */) {
       menu,
       modifier,
       admin,
+      giftcard,
     },
   })
 
