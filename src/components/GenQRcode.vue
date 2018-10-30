@@ -24,20 +24,15 @@ export default {
   },
   mounted() {
     var canvas = this.$el.querySelector('#canvas')
-    QRCode.toCanvas(
-      canvas,
-      this.qrcode,
-      {
-        color: {
-          dark: this.dark,
-          light: this.light,
-        },
-        version: this.size,
+    QRCode.toCanvas(canvas, this.qrcode, {
+      color: {
+        dark: this.dark,
+        light: this.light,
       },
-      err => {
-        if (err != null) _procError(err)
-      }
-    )
+      version: this.size,
+    }).catch(err => {
+      _procError(err)
+    })
   },
 }
 </script>
