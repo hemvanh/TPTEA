@@ -4,13 +4,18 @@
 </div>
 </template>
 <script>
+import {_procError} from '../util/common'
 import QRCode from 'qrcode'
 export default {
   props: {
     qrcode: [String, Object],
-    color: {
-      type: Array,
-      default: () => ['#000', '#0000'],
+    dark: {
+      type: String,
+      default: () => '#00F',
+    },
+    light: {
+      type: String,
+      default: () => '#0000',
     },
     size: {
       type: Number,
@@ -24,14 +29,13 @@ export default {
       this.qrcode,
       {
         color: {
-          dark: this.color[0], 
-          light: this.color[1],
+          dark: this.dark,
+          light: this.light,
         },
         version: this.size,
       },
-      function(error) {
-        if (error) alert(error)
-        alert('success!')
+      err => {
+        if (err != null) _procError(err)
       }
     )
   },
