@@ -12,7 +12,7 @@ const resolvers = {
       _authAdmin(loggedInUser)
       return genGiftCard(input.amount, input.expiry)
     },
-    async deleteGiftCard(_, {input}, {loggedInUser}) {
+    async deleteGiftCards(_, {input}, {loggedInUser}) {
       _authAdmin(loggedInUser)
       return await GiftCard.destroy({
         where: {

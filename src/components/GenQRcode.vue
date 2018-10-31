@@ -8,7 +8,10 @@ import {_procError} from '../util/common'
 import QRCode from 'qrcode'
 export default {
   props: {
-    qrcode: [String, Object],
+    qrcode: {
+      type: String,
+      default: () => 'xxx',
+    },
     dark: {
       type: String,
       default: () => '#00F',
@@ -17,9 +20,9 @@ export default {
       type: String,
       default: () => '#0000',
     },
-    size: {
+    version: {
       type: Number,
-      default: () => 4,
+      default: () => 5,
     },
   },
   mounted() {
@@ -29,7 +32,7 @@ export default {
         dark: this.dark,
         light: this.light,
       },
-      version: this.size,
+      version: this.version,
     }).catch(err => {
       _procError(err)
     })
