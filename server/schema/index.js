@@ -43,6 +43,8 @@ const RootMutation = `
     updateCustomer(input:CustomerInput): Customer
     createCustomer(input:CustomerInput): Customer
     genGiftCard(input:GenGiftCardInput): String
+    deleteGiftCard(input:[Int]): Int
+    createGiftCard(input:GiftCardInput): GiftCard
   }
 `
 
