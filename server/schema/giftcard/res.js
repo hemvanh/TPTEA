@@ -24,9 +24,7 @@ const resolvers = {
     },
     async createGiftCard(_, {input}, {loggedInUser}) {
       _authAdmin(loggedInUser)
-      return await GiftCard.create(input).then(giftCard=> {
-        return giftCard
-      })
+      return await GiftCard.create(input).then(giftCard => giftCard)
     },
   },
   GiftCard: {
