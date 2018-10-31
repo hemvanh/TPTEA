@@ -8,7 +8,6 @@ import pgAdminHome from 'pages/admin/Home'
 import pgAdminGiftCards from 'pages/admin/GiftCards'
 import pgCategories from 'pages/Categories'
 import pgMenus from 'pages/Menus'
-import pgStores from 'pages/Stores'
 import pgCustomer from 'pages/Customer'
 import pgRegister from 'pages/Register'
 import pgMenuDetail from 'pages/MenuDetail'
@@ -32,10 +31,6 @@ const routes = [
       {
         path: 'menus/:catId',
         component: pgMenus,
-      },
-      {
-        path: 'stores',
-        component: pgStores,
       },
       {
         path: 'customer',

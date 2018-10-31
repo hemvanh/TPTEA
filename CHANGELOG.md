@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
 - Generate gift card QR
 - Topup page
 - Authenticate a GiftCard utility function
+- Apply gift card function
 ### Removed 
 - Join now button
 ### Fixed

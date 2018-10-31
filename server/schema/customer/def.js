@@ -39,5 +39,10 @@ const Customer = `
     token :String
     msg: String
   }
+
+  input ApplyGiftCardInput {
+    jwt: String!
+    customerId: Int!
+  }
 `
 export default Customer

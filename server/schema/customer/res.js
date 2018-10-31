@@ -2,7 +2,7 @@ import {Customer} from '../../models'
 import GraphQLDate from 'graphql-date'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import {_auth, _authAdmin} from '../../util'
+import {_auth, _authAdmin, authGiftCard} from '../../util'
 const SALT = 10
 async function generateLoginJwt({username}, msg = '') {
   var user = await Customer.findOne({where: {username}})
@@ -113,6 +113,16 @@ const resolvers = {
       return await Customer.create(input).then(async function(customer) {
         return customer
       })
+    },
+    async applyGiftCard(_, {input}, {loggedInUser}) {
+      _auth(loggedInUser)
+      let giftCard = authGiftCard(input.jwt)
+      if (giftCard.expired) {
+        throw new Error('This gift card has expired!')
+      }
+      let user = await Customer.findById(input.customerId)
+      let balance = user.get('balance') + giftCard.giftCard.amount
+      return await user.update({balance}).then(() => balance)
     },
   },
 }

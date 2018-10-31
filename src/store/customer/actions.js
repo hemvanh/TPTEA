@@ -132,7 +132,7 @@ export const fetchCustomer = ({commit}) => {
     }
   }`)
     .then(({data}) => {
-      _procAlert(data, true)
+      _procAlert(data)
       commit('setCustomer', data.getCustomer)
     })
     .catch(err => {
