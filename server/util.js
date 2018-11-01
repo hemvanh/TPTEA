@@ -1,4 +1,3 @@
-import uuidv4 from 'uuid/v4'
 import jwt from 'jsonwebtoken'
 export const _auth = loggedInUser => {
   if (!loggedInUser) {
@@ -18,19 +17,11 @@ export const _authAdmin = loggedInUser => {
   }
 }
 
-export const genGiftCard = (amount, expiry) => {
-  if (typeof amount !== 'number' || typeof expiry !== 'number') {
-    throw new Error('Amount and Expiry must be number!')
+export const genGiftCard = giftCardId => {
+  if (typeof giftCardId !== 'number') {
+    throw new Error('Gift card id must be number!')
   }
-  return jwt.sign(
-    {
-      guid: uuidv4(),
-      createdDate: new Date().getTime(),
-      amount,
-      expiry,
-    },
-    process.env.JWT_GIFT_SECRET
-  )
+  return jwt.sign(giftCardId, process.env.JWT_GIFT_SECRET)
 }
 
 export const authGiftCard = jwtGiftCard => {

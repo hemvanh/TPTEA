@@ -3,12 +3,15 @@ const GiftCard = `
     id: Int
     code: String
     userName: String
+    amount: Int
+    expiry: Int
     createdAt: Date
   }
 
   input GiftCardInput {
     id: Int
-    code: String!
+    amount: Int!
+    expiry: Int!
   }
 
   input GenGiftCardInput {

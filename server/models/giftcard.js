@@ -5,6 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       code: DataTypes.STRING,
       customerId: DataTypes.INTEGER,
+      amount: DataTypes.INTEGER,
+      expiry: DataTypes.INTEGER,
     },
     {}
   )

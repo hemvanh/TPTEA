@@ -11,6 +11,12 @@ module.exports = {
       code: {
         type: Sequelize.TEXT,
       },
+      amount: {
+        type: Sequelize.INTEGER,
+      },
+      expiry: {
+        type: Sequelize.INTEGER,
+      },
       customerId: {
         type: Sequelize.INTEGER,
         references: {

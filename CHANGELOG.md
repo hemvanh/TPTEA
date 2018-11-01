@@ -21,6 +21,7 @@ All notable changes to this project will be documented in this file.
 - Apply gift card function
 ### Removed 
 - Join now button
+- Remove parameter "expiry" and change parameter "amount" to "giftCardid" in genGiftCard function
 ### Fixed
 - createdAt/updatedAt remove default val [#reason](default val is autogen when using upsert/update in sequelize)
 - Register layout
@@ -42,6 +43,7 @@ All notable changes to this project will be documented in this file.
 - Change default value for counter [@john](https://github.com/tri-et/TPTEA/tree/feature/fix-bugs-counter)
 - Rename variable  to camel case in page MenuDetail 
 - Remove register facebook button from login page into register page
+- Adjust createGiftCard, simplify and shorten jwt by moving Gift Card info DB
 ### Added
 - Customer Login feature
 - Customer Register feature
