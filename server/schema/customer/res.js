@@ -116,7 +116,7 @@ const resolvers = {
     },
     async applyGiftCard(_, {input}, {loggedInUser}) {
       _auth(loggedInUser)
-      let giftCard = authGiftCard(input.jwt)
+      let giftCard = await authGiftCard(input.jwt)
       if (giftCard.expired) {
         throw new Error('This gift card has expired!')
       }

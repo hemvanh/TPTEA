@@ -44,6 +44,7 @@ All notable changes to this project will be documented in this file.
 - Rename variable  to camel case in page MenuDetail 
 - Remove register facebook button from login page into register page
 - Adjust createGiftCard, simplify and shorten jwt by moving Gift Card info DB
+- Adjust authGiftCard
 ### Added
 - Customer Login feature
 - Customer Register feature
