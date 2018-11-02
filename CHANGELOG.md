@@ -53,3 +53,4 @@ All notable changes to this project will be documented in this file.
 - Logins fields validation
 - Login admin
 - Fetch admin -> fetch Admin info (username) and show to admin default logged in page
+- Creat seeders GiftCard add amout, expiry
