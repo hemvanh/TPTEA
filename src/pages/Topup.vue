@@ -110,6 +110,13 @@ export default {
   margin auto
   display block
 
+@media (max-width: $breakpoint-xs)
+  .center
+    width 100%
+
+  .q-card-actions
+    height calc(100vh - 527px) !important
+
 @media (min-width: $breakpoint-xs)
   .q-card-actions
     height 240px !important
