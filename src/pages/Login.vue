@@ -105,6 +105,9 @@ export default {
   margin auto
   display block
 
+.et-login
+  height 100%
+
 @media (max-width: $breakpoint-xs)
   .et-login
     width 100%

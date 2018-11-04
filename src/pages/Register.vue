@@ -1,5 +1,5 @@
 <template>
-  <q-card square class="et-login center">
+  <q-card square class="center">
     <q-card-media>
       <svg class="center" id="logo" viewBox="0 0 483 483" width="128px" height="128px" v-html="getLoginLogo">
       </svg>
@@ -133,7 +133,7 @@ export default {
   display block
 
 @media (max-width: $breakpoint-xs)
-  .et-login
+  .center
     width 100%
 
   .q-card-actions
