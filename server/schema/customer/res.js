@@ -34,6 +34,19 @@ const resolvers = {
       _authAdmin(loggedInUser)
       return await Customer.findAll()
     },
+    async genCustomerPaymentId(_, {input}, {loggedInUser}) {
+      _auth(loggedInUser)
+      let user = await Customer.findById(input)
+      if (user) return jwt.sign({id: input}, process.env.JWT_SECRET, {expiresIn: '30s'})
+      else throw new Error('Customer not found!')
+    },
+    async verifyCustomerPaymentId(_, {input}, {loggedInUser}) {
+      _auth(loggedInUser)
+      return jwt.verify(input, process.env.JWT_SECRET, async (err, jwtDecode) => {
+        if (err) throw new Error(err.message)
+        else return (await Customer.findById(jwtDecode.id)) || new Error('Customer not found!')
+      })
+    },
   },
   RootMutation: {
     async login(_, {input}) {

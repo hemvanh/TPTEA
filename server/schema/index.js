@@ -29,6 +29,8 @@ const RootQuery = `
     fetchAdmin(input:Int): Admin
     fetchCustomers: [Customer]
     fetchGiftCards: [GiftCard]
+    genCustomerPaymentId(input:Int): String
+    verifyCustomerPaymentId(input:String): Customer
   }
 `
 
