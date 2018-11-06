@@ -41,3 +41,7 @@ export const getIcon = state => {
 export const getSelected = state => {
   return state.selected
 }
+
+export const getIsModalPrintOpened = state => {
+  return state.isModalPrintOpened
+}

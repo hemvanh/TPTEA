@@ -25,3 +25,7 @@ export const setIsModalOpened = (state, payload) => {
 export const setIsModalQRCodeOpened = (state, payload) => {
   state.isModalQRCodeOpened = payload
 }
+
+export const setPrintingRec = (state, payload) => {
+  state.isModalPrintOpened = true
+}

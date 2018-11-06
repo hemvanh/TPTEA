@@ -8,6 +8,9 @@
       <q-btn wait-for-ripple :disabled="getIsLoading" color="secondary" class="q-mr-sm" :class="{'q-hide-add':hideAdd}" @click="setEditingRec({})">
         <q-icon name="add" class="et-icon" />
       </q-btn>
+      <q-btn wait-for-ripple :disabled="getIsLoading" v-show="isPrinted" color="secondary" class="q-mr-sm" :class="{'q-hide-add':hideAdd}" @click="setPrintingRec()">
+        <q-icon name="print" class="et-icon" />
+      </q-btn>
       <q-icon :name="getIcon" class="et-icon" />
       <cite>{{getTitle}}</cite>
     </template>
@@ -70,6 +73,10 @@ export default {
     },
     hideSelection: Boolean,
     hideAdd: Boolean,
+    isPrinted: {
+      default: false,
+      type: Boolean,
+    },
   },
   data() {
     return {
@@ -125,6 +132,9 @@ export default {
       setEditingRec(dispatch, payload) {
         return dispatch(this.type + '/setEditingRec', payload)
       },
+      setPrintingRec(dispatch, payload) {
+        return dispatch(this.type + '/setPrintingRec', payload)
+      },
     }),
     selectedLabel(rowsNo) {
       return `Selected ${rowsNo}`
@@ -136,15 +146,19 @@ export default {
 }
 </script>
 <style scoped lang="stylus">
-.q-pa-none
-  padding 0 !important
+.q-pa-none {
+  padding: 0 !important;
+}
 
-.q-hide-add
-  display none
+.q-hide-add {
+  display: none;
+}
 
-.input-search
-  width 300px
+.input-search {
+  width: 300px;
+}
 
-.et-icon
-  font-size 25px
+.et-icon {
+  font-size: 25px;
+}
 </style>

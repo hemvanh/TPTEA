@@ -1,6 +1,7 @@
 export default {
   isModalOpened: false,
   isModalQRCodeOpened: false,
+  isModalPrintOpened: false,
   currentGenGiftCardCode: 'xxx',
   isLoading: false,
   name: 'Gift Card',
