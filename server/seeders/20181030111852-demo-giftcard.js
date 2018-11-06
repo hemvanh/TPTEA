@@ -24,7 +24,9 @@ module.exports = {
     // console.log(data)
     return queryInterface.bulkInsert(
       'giftcards',
-      _d.map(data, row => _d.pick(row, ['id', 'code', 'amount', 'expiry', 'createdat', 'updatedat', 'customerid'])),
+      _d.map(data, row =>
+        _d.pick(row, ['id', 'code', 'amount', 'expiry', 'createdat', 'updatedat', 'customerid', 'isprinted'])
+      ),
       {}
     )
   },

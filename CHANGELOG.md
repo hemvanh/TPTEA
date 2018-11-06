@@ -58,3 +58,4 @@ All notable changes to this project will be documented in this file.
 - Creat seeders GiftCard add amount, expiry
 - A single GiftCard component used for printing
 - Verify and generate customer payment Id
+- Add IsPrinted to Giftcard

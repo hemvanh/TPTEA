@@ -17,6 +17,9 @@ module.exports = {
       expiry: {
         type: Sequelize.INTEGER,
       },
+      isprinted: {
+        type: Sequelize.BOOLEAN,
+      },
       customerId: {
         type: Sequelize.INTEGER,
         references: {

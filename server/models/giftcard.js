@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       customerId: DataTypes.INTEGER,
       amount: DataTypes.INTEGER,
       expiry: DataTypes.INTEGER,
+      isprinted: DataTypes.BOOLEAN,
     },
     {}
   )
