@@ -8,9 +8,6 @@
       <q-btn wait-for-ripple :disabled="getIsLoading" color="secondary" class="q-mr-sm" :class="{'q-hide-add':hideAdd}" @click="setEditingRec({})">
         <q-icon name="add" class="et-icon" />
       </q-btn>
-      <q-btn wait-for-ripple :disabled="getIsLoading" v-show="isPrinted" color="secondary" class="q-mr-sm" :class="{'q-hide-add':hideAdd}" @click="setPrintingRec()">
-        <q-icon name="print" class="et-icon" />
-      </q-btn>
       <q-icon :name="getIcon" class="et-icon" />
       <cite>{{getTitle}}</cite>
     </template>
@@ -36,6 +33,9 @@
         <q-btn :loading="getIsLoading" color="negative" class="q-mr-sm" @click="delRecs">
           <q-icon name="delete" class="icon" />
           <q-spinner-pie slot="loading" class="et-icon" />
+        </q-btn>
+        <q-btn wait-for-ripple :disabled="getIsLoading" v-show="isPrinted" color="secondary" class="q-mr-sm" :class="{'q-hide-add':hideAdd}" @click="setPrintingRec()">
+          <q-icon name="print" class="et-icon" />
         </q-btn>
         <q-icon :name="getIcon" class="et-icon" />
         <cite>{{getTitle}}</cite>
