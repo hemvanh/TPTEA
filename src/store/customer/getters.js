@@ -38,7 +38,6 @@ export const getIsModalOpened = state => {
 export const getEditingRec = state => {
   return state.editingRec
 }
-
-export const getCurrentScannedGiftCardCode = state => {
-  return state.currentScannedGiftCardCode
+export const getQRCodePayment = state => {
+  return state.qrCodePayment
 }

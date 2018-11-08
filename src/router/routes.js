@@ -14,6 +14,7 @@ import pgMenuDetail from 'pages/MenuDetail'
 import pgError404 from 'pages/Error404'
 import pgAdminCustomers from 'pages/admin/Customers'
 import pgTopup from 'pages/Topup'
+import pgMakePayment from 'pages/MakePayment'
 
 const routes = [
   {
@@ -51,6 +52,10 @@ const routes = [
           {
             path: 'topup',
             component: pgTopup,
+          },
+          {
+            path: 'makepayment',
+            component: pgMakePayment,
           },
         ],
       },

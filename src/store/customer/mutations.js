@@ -41,3 +41,6 @@ export const setIsModalOpened = (state, payload) => {
 export const setCurrentScannedGiftCardCode = (state, payload) => {
   state.currentScannedGiftCardCode = payload
 }
+export const setQRCodePayment = (state, payload) => {
+  state.qrCodePayment = payload
+}

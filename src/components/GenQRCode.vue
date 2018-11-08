@@ -22,7 +22,7 @@ export default {
     },
     version: {
       type: Number,
-      default: () => 5,
+      default: () => 6,
     },
   },
   methods: {
@@ -45,6 +45,10 @@ export default {
   watch: {
     qrcode(newQRCode, oldQRCode) {
       this.drawImage(newQRCode)
+    },
+    dark(newColor, oldColor) {
+      this.dark = newColor
+      this.drawImage(this.qrcode)
     },
   },
 }
