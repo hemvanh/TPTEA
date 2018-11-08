@@ -37,7 +37,4 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-.test {
-  max-width: 900px;
-}
 </style>

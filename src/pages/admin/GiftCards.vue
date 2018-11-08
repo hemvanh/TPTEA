@@ -1,6 +1,6 @@
 <template>
   <div>
-    <et-grid type="giftcard" :disableEditting="true" :expandedCol="expandedCol" isPrinted />
+    <et-grid type="giftcard" :disableEditting="true" :expandedCol="expandedCol" supportGiftCardsPrinting />
     <modal-create-gift-card />
     <modal-q-r-code :qrcode="getCurrentGenGiftCardCode" />
     <gift-card-printing />
@@ -10,7 +10,7 @@
 import modalCreateGiftCard from '../../components/CreateGiftCardModal'
 import modalQRCode from '../../components/QRCodeModal'
 import etGrid from '../../components/EtGrid'
-import giftCardPrinting from '../../components/GiftCardPrinting'
+import giftCardPrinting from '../../components/GiftCardsPrinting'
 import {mapGetters, mapMutations} from 'vuex'
 export default {
   components: {
