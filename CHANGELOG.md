@@ -31,6 +31,7 @@ All notable changes to this project will be documented in this file.
 - Rename auth-token-admin to auth-token
 - Responsive customer grid
 - CSS fix for Topup & Login page
+- Add button export for printing
 
 ## 0.0.1 - 2018-09-17
 ### Fixed
