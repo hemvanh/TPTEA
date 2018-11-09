@@ -286,7 +286,6 @@ export function genCustomerPaymentId({commit, getters}) {
     })
     .catch(err => {
       _procError(err)
-      commit('setIsLoading', false)
     })
     .finally(() => {
       commit('setIsLoading', false)

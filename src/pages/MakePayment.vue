@@ -19,10 +19,12 @@
 <script>
 import etGenQRCode from '../components/GenQRCode'
 import {mapGetters, mapActions, mapMutations} from 'vuex'
+const VALID_COLOR = '#00F'
+const EXPIRED_COLOR = '#F00'
 export default {
   data() {
     return {
-      dark: '#00F',
+      dark: VALID_COLOR,
       disabled: true,
       isOpenedPayment: true,
       countDownHandler: null,
@@ -44,7 +46,7 @@ export default {
     },
     btnRefresh(number) {
       this.genCustomerPaymentId()
-      this.dark = '#00F'
+      this.dark = VALID_COLOR
       this.disabled = true
     },
   },
@@ -61,7 +63,7 @@ export default {
           'This code will be expired after   ' + --timeleft + ' seconds'
         if (timeleft <= 0) {
           this.disabled = false
-          this.dark = '#F00'
+          this.dark = EXPIRED_COLOR
           clearInterval(this.countDownHandler)
         }
       }, 1000)

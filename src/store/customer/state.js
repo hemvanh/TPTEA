@@ -12,7 +12,7 @@ export default {
   editingRec: {},
   backupRec: {},
   currentScannedGiftCardCode: '',
-  qrCodePaymentId: '',
+  qrCodePaymentId: 'xxx',
   cols: [
     {
       name: 'edit',
