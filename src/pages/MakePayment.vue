@@ -6,7 +6,7 @@
         <div class="q-title row justify-center q-mt-sm text-grey">{{getCustomer.name}}</div>
         <div class="row justify-center q-mt-sm">Give this code to the cashier for payment</div>
         <div class="q-pa-lg">
-          <et-gen-q-r-code :dark='dark' :qrcode='getQRCodePayment' class="row justify-center" />
+          <et-gen-q-r-code :dark='dark' :qrcode='getQRCodePaymentId' class="row justify-center" />
         </div>
         <span id="countdown" class="row justify-center"></span>
         <div class="row justify-center q-mt-xl">
@@ -37,11 +37,11 @@ export default {
     etGenQRCode,
   },
   computed: {
-    ...mapGetters('customer', ['getCustomer', 'getQRCodePayment', 'getIsLoading']),
+    ...mapGetters('customer', ['getCustomer', 'getQRCodePaymentId', 'getIsLoading']),
   },
   methods: {
     ...mapActions('customer', ['genCustomerPaymentId']),
-    ...mapMutations('customer', ['setQRCodePayment']),
+    ...mapMutations('customer', ['setQRCodePaymentId']),
     closePayment() {
       this.$router.go(-1)
       clearInterval(this.countDownHandler)
@@ -56,8 +56,8 @@ export default {
     this.genCustomerPaymentId()
   },
   watch: {
-    getQRCodePayment(newQRCode, oldQRCode) {
-      this.setQRCodePayment(newQRCode)
+    getQRCodePaymentId(newQRCode, oldQRCode) {
+      this.setQRCodePaymentId(newQRCode)
       var timeleft = 31
       clearInterval(this.countDownHandler)
       this.countDownHandler = setInterval(() => {

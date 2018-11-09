@@ -38,6 +38,6 @@ export const getIsModalOpened = state => {
 export const getEditingRec = state => {
   return state.editingRec
 }
-export const getQRCodePayment = state => {
+export const getQRCodePaymentId = state => {
   return state.qrCodePaymentId
 }
