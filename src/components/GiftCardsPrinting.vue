@@ -6,7 +6,7 @@
         <q-btn flat icon="print" @click="print"></q-btn>
       </q-toolbar>
       <div>
-        <gift-card v-for="(giftcard,index) in getSelected" :key="index" />
+        <gift-card v-for="({code,amount,expiry},index) in getSelected" :code="code" :amount="amount" :expiry="expiry" :key="index" />
       </div>
     </q-modal-layout>
   </q-modal>
