@@ -9,8 +9,8 @@ var doc = new GoogleSpreadsheet('14ShSC1gocvbzP8RGP6lk03QxAejjRYK05cRnBr6Hv7k')
 
 function getData() {
   return new Promise((resolve, reject) => {
-    doc.useServiceAccountAuth(creds, function(err) {
-      doc.getRows(1, function(err, rows) {
+    doc.useServiceAccountAuth(creds, err => {
+      doc.getRows(1, (err, rows) => {
         if (err) reject(err)
         else resolve(rows)
       })

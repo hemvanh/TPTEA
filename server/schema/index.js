@@ -48,6 +48,7 @@ const RootMutation = `
     deleteGiftCards(input:[Int]): Int
     createGiftCard(input:GiftCardInput): GiftCard
     applyGiftCard(input:ApplyGiftCardInput): ApplyGiftCardOutput
+    receivePayment(input:ReceivePaymentInput): ReceivePayment
   }
 `
 

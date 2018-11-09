@@ -31,6 +31,10 @@
           <q-item-side icon="people" />
           <q-item-main label="Customers" />
         </q-item>
+        <q-item to="/admin/receivepayment">
+          <q-item-side icon="payment" />
+          <q-item-main label="Receive Payment" />
+        </q-item>
       </q-list>
     </q-layout-drawer>
 

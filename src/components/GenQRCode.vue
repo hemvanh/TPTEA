@@ -20,10 +20,7 @@ export default {
       type: String,
       default: () => '#0000',
     },
-    version: {
-      type: Number,
-      default: () => 6,
-    },
+    version: 6,
   },
   methods: {
     drawImage(qrcode) {

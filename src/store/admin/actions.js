@@ -38,3 +38,27 @@ export const fetchAdmin = ({commit}) => {
       _procError(err)
     })
 }
+export const receivePayment = ({commit}, payload) => {
+  commit('setIsDisabled', true)
+  _post(
+    payload,
+    `mutation ($input: ReceivePaymentInput) {
+      receivePayment(input: $input) {
+        balance
+        username
+        chargedAmount
+      }
+    }`
+  )
+    .then(({data}) => {
+      _procAlert(data, `Receive payment In Successfully!`)
+      if (!data.errors) {
+        commit('setIsDialogOpenned', true)
+        commit('setIsDisabled', false)
+        commit('setReceived', data.receivePayment)
+      }
+    })
+    .catch(err => {
+      _procError(err)
+    })
+}

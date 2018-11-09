@@ -59,3 +59,5 @@ All notable changes to this project will be documented in this file.
 - A single GiftCard component used for printing
 - Verify and generate customer payment Id
 - Add IsPrinted to Giftcard
+- Receive payment function
+- Grid recive payment

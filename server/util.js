@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import {GiftCard} from './models'
+import {GiftCard, Customer} from './models'
 export const _auth = loggedInUser => {
   if (!loggedInUser) {
     throw new Error('Please login first!')
@@ -36,4 +36,13 @@ export const authGiftCard = async jwtGiftCard => {
       expired,
     }
   } else throw new Error('This gift card not available!')
+}
+
+export const verifyCustomerPaymentId = async jwtPayment => {
+  let jwtDecode = jwt
+    .verify(jwtPayment, process.env.JWT_SECRET)
+    .split('_')
+    .map(number => parseInt(number))
+  if (new Date().getTime() - jwtDecode[1] > 30000) throw new Error('Customer Payment Id is expired!')
+  else return (await Customer.findById(jwtDecode[0])) || new Error('Customer not found!')
 }

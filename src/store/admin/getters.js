@@ -7,3 +7,15 @@ export const getIsLoading = state => {
 export const getAdmin = state => {
   return state.admin
 }
+
+export const getIsDialogOpenned = state => {
+  return state.isDialogOpenned
+}
+
+export const getReceived = state => {
+  return state.received
+}
+
+export const getIsDisabled = state => {
+  return state.isDisabled
+}
