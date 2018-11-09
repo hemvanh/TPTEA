@@ -1,20 +1,20 @@
 <template>
   <q-page>
     <q-modal v-model="isOpenedPayment" maximized>
-    <q-btn class="absolute-top-left" color="primary" flat round dense icon="reply" @click="closePayment()"></q-btn>
-    <div>
+      <q-btn class="absolute-top-left" color="primary" flat round dense icon="reply" @click="closePayment()"></q-btn>
+      <div>
         <div class="q-title row justify-center q-mt-sm text-grey">{{getCustomer.name}}</div>
         <div class="row justify-center q-mt-sm">Give this code to the cashier for payment</div>
-            <div class="q-pa-lg">
-                <et-gen-q-r-code :dark='dark' :qrcode='getQRCodePayment' class="row justify-center"/>
-            </div>
-   <span id="countdown" class="row justify-center"></span>
-   <q-btn :loading="getIsLoading" class="q-mb-xl fixed-center" :disabled="disabled" color="secondary" @click="btnRefresh" label="Get New Code" >
-      <q-spinner-pie slot="loading" size="25px" />
-   </q-btn>
-</div>
+        <div class="q-pa-lg">
+          <et-gen-q-r-code :dark='dark' :qrcode='getQRCodePayment' class="row justify-center" />
+        </div>
+        <span id="countdown" class="row justify-center"></span>
+        <q-btn :loading="getIsLoading" class="q-mb-xl fixed-center" :disabled="disabled" color="secondary" @click="btnRefresh" label="Get New Code">
+          <q-spinner-pie slot="loading" size="25px" />
+        </q-btn>
+      </div>
     </q-modal>
-</q-page>
+  </q-page>
 </template>
 <script>
 import etGenQRCode from '../components/GenQRCode'
@@ -55,20 +55,19 @@ export default {
     getQRCodePayment(newQRCode, oldQRCode) {
       this.setQRCodePayment(newQRCode)
       var timeleft = 31
-      var me = this
       clearInterval(this.countDownHandler)
-      this.countDownHandler = setInterval(function() {
-        document.getElementById('countdown').textContent = 'This code is expere after   ' + --timeleft + ' seconds'
-        console.log(timeleft)
+      this.countDownHandler = setInterval(() => {
+        document.getElementById('countdown').textContent =
+          'This code will be expired after   ' + --timeleft + ' seconds'
         if (timeleft <= 0) {
-          me.disabled = false
-          me.dark = '#F00'
-          clearInterval(me.countDownHandler)
+          this.disabled = false
+          this.dark = '#F00'
+          clearInterval(this.countDownHandler)
         }
       }, 1000)
     },
   },
 }
 </script>
-<style>
+<style lang="stylus" scoped>
 </style>

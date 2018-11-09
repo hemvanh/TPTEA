@@ -23,7 +23,7 @@
         <q-item-main label="Topup" />
         <q-item-side right icon="keyboard_arrow_right" />
       </q-item>
-     <q-item class="q-pt-md q-pb-md" to="/customer/makepayment" link>
+      <q-item class="q-pt-md q-pb-md" to="/customer/makepayment" link>
         <q-item-side icon="credit_card" />
         <q-item-main label="Make Payment" />
         <q-item-side right icon="keyboard_arrow_right" />
@@ -82,11 +82,9 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-.icon-customer {
-  border-radius: 50%;
-}
+.icon-customer
+  border-radius 50%
 
-.points {
-  font-size: 24px;
-}
+.points
+  font-size 24px
 </style>

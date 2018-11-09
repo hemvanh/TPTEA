@@ -39,5 +39,5 @@ export const getEditingRec = state => {
   return state.editingRec
 }
 export const getQRCodePayment = state => {
-  return state.qrCodePayment
+  return state.qrCodePaymentId
 }
