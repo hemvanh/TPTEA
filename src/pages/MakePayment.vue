@@ -65,6 +65,7 @@ export default {
           'This code will be expired after   ' + --timeleft + ' seconds'
         if (timeleft <= 0) {
           this.disabled = false
+          document.getElementById('countdown').textContent = 'This code is expired.Please get a new one!'
           this.dark = EXPIRED_COLOR
           clearInterval(this.countDownHandler)
         }
