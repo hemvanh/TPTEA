@@ -9,9 +9,11 @@
           <et-gen-q-r-code :dark='dark' :qrcode='getQRCodePayment' class="row justify-center" />
         </div>
         <span id="countdown" class="row justify-center"></span>
-        <q-btn :loading="getIsLoading" class="q-mb-xl fixed-center" :disabled="disabled" color="secondary" @click="btnRefresh" label="Get New Code">
-          <q-spinner-pie slot="loading" size="25px" />
-        </q-btn>
+        <div class="row justify-center q-mt-xl">
+          <q-btn :loading="getIsLoading" :disabled="disabled" color="secondary" @click="btnRefresh" label="Get New Code">
+            <q-spinner-pie slot="loading" size="25px" />
+          </q-btn>
+        </div>
       </div>
     </q-modal>
   </q-page>
