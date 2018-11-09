@@ -5,8 +5,11 @@
         <q-btn flat icon="close" @click="isModalOpened = false"></q-btn>
         <q-btn flat icon="print" @click="print"></q-btn>
       </q-toolbar>
-      <div>
-        <gift-card v-for="({code,amount,expiry},index) in getSelected" :code="code" :amount="amount" :expiry="expiry" :key="index" />
+      <div class="giftcard-container">
+        <template v-for="({code,amount,expiry},index) in getSelected">
+          <gift-card :code="code" :amount="amount" :expiry="expiry" :key="index" />
+          <hr :key="'spector'+index" class="hr-style" />
+        </template>
       </div>
     </q-modal-layout>
   </q-modal>
@@ -37,4 +40,10 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
+.hr-style
+  border-top 2px dashed #8c8b8b
+  width 400px
+
+.giftcard-container
+  max-width 450px
 </style>
