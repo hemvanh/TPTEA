@@ -10,7 +10,7 @@
         </div>
         <span id="countdown" class="row justify-center"></span>
         <div class="row justify-center q-mt-xl">
-          <q-btn :loading="getIsLoading" :disabled="disabled" color="secondary" @click="btnRefresh" label="Get New Code">
+          <q-btn :loading="getIsLoading" :disabled="disabled" color="secondary" @click=genCustomerPaymentId() label="Get New Code">
             <q-spinner-pie slot="loading" size="25px" />
           </q-btn>
         </div>
@@ -30,7 +30,6 @@ export default {
       disabled: true,
       isOpenedPayment: true,
       countDownHandler: null,
-      countDown: 0,
     }
   },
   components: {
@@ -46,17 +45,14 @@ export default {
       this.$router.go(-1)
       clearInterval(this.countDownHandler)
     },
-    btnRefresh(number) {
-      this.genCustomerPaymentId()
-      this.dark = VALID_COLOR
-      this.disabled = true
-    },
   },
   mounted() {
     this.genCustomerPaymentId()
   },
   watch: {
     getQRCodePaymentId(newQRCode, oldQRCode) {
+      this.dark = VALID_COLOR
+      this.disabled = true
       this.setQRCodePaymentId(newQRCode)
       var timeleft = 31
       clearInterval(this.countDownHandler)
