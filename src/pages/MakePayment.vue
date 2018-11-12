@@ -10,7 +10,7 @@
         </div>
         <span id="countdown" class="row justify-center"></span>
         <div class="row justify-center q-mt-xl">
-          <q-btn :loading="getIsLoading" :disabled="disabled" color="secondary" @click=genCustomerPaymentId() label="Get New Code">
+          <q-btn :loading="getIsLoading" :disabled="disabled" color="secondary" @click="genCustomerPaymentId" label="Get New Code">
             <q-spinner-pie slot="loading" size="25px" />
           </q-btn>
         </div>
