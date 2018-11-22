@@ -24,7 +24,9 @@
         <q-btn :loading="getIsLoading" color="secondary" label="Sign In" class="text-secondary q-ma-sm col-10" @click="login({username,password,type:'password'})">
           <q-spinner-pie slot="loading" size="25px" />
         </q-btn>
-        <q-btn color="facebook" label="Sign in Facebook" @click="loginFb()" class="text-white q-ma-sm col-10" />
+        <q-btn :loading="getIsLoadingFB" color="facebook" label="Sign in Facebook" @click="loginFb()" class="text-white q-ma-sm col-10">
+          <q-spinner-pie slot="loading" size="25px" />
+        </q-btn>
       </div>
     </q-card-actions>
   </q-card>
@@ -63,7 +65,7 @@ export default {
     getLoginLogo() {
       return logoData[this.logo]
     },
-    ...mapGetters('customer', ['getIsLoading']),
+    ...mapGetters('customer', ['getIsLoading', 'getIsLoadingFB']),
   },
   methods: {
     ...mapActions('customer', ['loginCustomer', 'regCustomer', 'loginFb']),

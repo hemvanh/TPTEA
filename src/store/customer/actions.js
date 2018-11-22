@@ -1,6 +1,6 @@
-import {_procError, _ax, _post, _get, _procAlert, getUserFbInfo} from '../../util/common'
+import { _procError, _ax, _post, _get, _procAlert, getUserFbInfo } from '../../util/common'
 import _ from 'lodash'
-export function loginCustomer({commit}, payload) {
+export function loginCustomer({ commit }, payload) {
   commit('setIsLoading', true)
   _post(
     payload,
@@ -8,7 +8,7 @@ export function loginCustomer({commit}, payload) {
       login(input: $input)
     }`
   )
-    .then(({data}) => {
+    .then(({ data }) => {
       commit('setIsLoading', false)
       _procAlert(data, 'Logged In Successfully!')
       if (!data.errors) {
@@ -25,7 +25,7 @@ export function loginCustomer({commit}, payload) {
     })
 }
 
-export function regCustomer({commit}, payload) {
+export function regCustomer({ commit }, payload) {
   commit('setIsLoading', true)
   _post(
     payload,
@@ -33,7 +33,7 @@ export function regCustomer({commit}, payload) {
       register(input: $input)
     }`
   )
-    .then(({data}) => {
+    .then(({ data }) => {
       commit('setIsLoading', false)
       _procAlert(data, 'Regitered Successfully!')
       if (!data.errors) {
@@ -50,7 +50,8 @@ export function regCustomer({commit}, payload) {
     })
 }
 
-export async function loginFb({commit}) {
+export async function loginFb({ commit }) {
+  commit('setIsLoadingFB', true)
   var user = await getUserFbInfo()
   _post(
     {
@@ -62,7 +63,8 @@ export async function loginFb({commit}) {
       loginFb(input: $input)
     }`
   )
-    .then(({data}) => {
+    .then(({ data }) => {
+      commit('setIsLoadingFB', false)
       _procAlert(data, 'Logged In Successfully!')
       if (!data.errors) {
         // Login successfully
@@ -74,9 +76,11 @@ export async function loginFb({commit}) {
     })
     .catch(err => {
       _procError(err)
+      commit('setIsLoadingFB', false)
     })
 }
-export async function registerFb({commit}) {
+export async function registerFb({ commit }) {
+  commit('setIsLoadingFB', true)
   var user = await getUserFbInfo()
   _post(
     {
@@ -95,7 +99,8 @@ export async function registerFb({commit}) {
       }
     }`
   )
-    .then(({data}) => {
+    .then(({ data }) => {
+      commit('setIsLoadingFB', false)
       _procAlert(data, data.registerFb.msg)
       if (!data.errors) {
         // register successfully
@@ -107,10 +112,11 @@ export async function registerFb({commit}) {
     })
     .catch(err => {
       _procError(err)
+      commit('setIsLoadingFB', false)
     })
 }
 
-export const fetchCustomer = ({commit}) => {
+export const fetchCustomer = ({ commit }) => {
   _get(`{
     getCustomer {
       id
@@ -119,7 +125,7 @@ export const fetchCustomer = ({commit}) => {
       points
     }
   }`)
-    .then(({data}) => {
+    .then(({ data }) => {
       _procAlert(data)
       commit('setCustomer', data.getCustomer)
     })
@@ -128,7 +134,7 @@ export const fetchCustomer = ({commit}) => {
     })
 }
 
-export const fetchCustomers = ({commit}) => {
+export const fetchCustomers = ({ commit }) => {
   commit('setIsLoading', true)
   _get(`{
     fetchCustomers {
@@ -142,7 +148,7 @@ export const fetchCustomers = ({commit}) => {
       points
     }
   }`)
-    .then(({data}) => {
+    .then(({ data }) => {
       _procAlert(data, true)
       commit('setRecs', data.fetchCustomers)
       commit('setIsLoading', false)
@@ -153,7 +159,7 @@ export const fetchCustomers = ({commit}) => {
     })
 }
 
-export const delCustomers = ({commit, getters}) => {
+export const delCustomers = ({ commit, getters }) => {
   commit('setIsLoading', true)
   let ids = Array.from(getters.getSelected, customer => customer.id)
   _post(
@@ -161,7 +167,7 @@ export const delCustomers = ({commit, getters}) => {
     `mutation ($input: [Int]) {
       deleteCustomers(input: $input)
     }`
-  ).then(({data}) => {
+  ).then(({ data }) => {
     _procAlert(data, true)
     commit('setIsLoading', false)
     _.remove(getters.getRecs, rec => {
@@ -174,7 +180,7 @@ export const delCustomers = ({commit, getters}) => {
   })
 }
 
-export const updateCustomer = ({commit, getters}) => {
+export const updateCustomer = ({ commit, getters }) => {
   commit('setIsLoading', true)
   _post(
     _.omit(getters.getEditingRec, ['__index']),
@@ -191,7 +197,7 @@ export const updateCustomer = ({commit, getters}) => {
       }
     }`
   )
-    .then(({data}) => {
+    .then(({ data }) => {
       _procAlert(data, true)
       commit('setIsLoading', false)
       commit('setIsModalOpened', false)
@@ -202,7 +208,7 @@ export const updateCustomer = ({commit, getters}) => {
     })
 }
 
-export function createCustomer({commit, getters}) {
+export function createCustomer({ commit, getters }) {
   commit('setIsLoading', true)
   _post(
     getters.getEditingRec,
@@ -219,7 +225,7 @@ export function createCustomer({commit, getters}) {
       }
     }`
   )
-    .then(({data}) => {
+    .then(({ data }) => {
       commit('setIsLoading', false)
       _procAlert(data, true)
       commit('setIsModalOpened', false)
@@ -232,7 +238,7 @@ export function createCustomer({commit, getters}) {
     })
 }
 
-export const applyGiftCard = ({commit}, payload) => {
+export const applyGiftCard = ({ commit }, payload) => {
   commit('setIsLoading', true)
   _post(
     payload,
@@ -243,7 +249,7 @@ export const applyGiftCard = ({commit}, payload) => {
       } 
     }`
   )
-    .then(({data}) => {
+    .then(({ data }) => {
       let amount = (data.applyGiftCard && data.applyGiftCard.amount) || 0
       _procAlert(data, `$${amount} has just been applied successfully`)
       if (data.applyGiftCard) commit('setCustomerBalance', data.applyGiftCard.balance)
@@ -256,7 +262,7 @@ export const applyGiftCard = ({commit}, payload) => {
       commit('setCurrentScannedGiftCardCode', '')
     })
 }
-export function genCustomerPaymentId({commit, getters}) {
+export function genCustomerPaymentId({ commit, getters }) {
   var customer = getters.getCustomer
   commit('setIsLoading', true)
   _post(
@@ -265,7 +271,7 @@ export function genCustomerPaymentId({commit, getters}) {
       genCustomerPaymentId(input: $input)
     }`
   )
-    .then(({data}) => {
+    .then(({ data }) => {
       _procAlert(data, 'Payment Id Generated!')
       if (!data.errors) {
         commit('setQRCodePaymentId', data.genCustomerPaymentId)
