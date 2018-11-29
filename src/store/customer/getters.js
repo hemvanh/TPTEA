@@ -4,6 +4,10 @@ export const getIsLoading = state => {
   return state.isLoading
 }
 
+export const getIsLoadingFB = state => {
+  return state.isLoadingFB
+}
+
 export const getCustomer = state => {
   return state.customer
 }

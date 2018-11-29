@@ -51,6 +51,7 @@ export function regCustomer({commit}, payload) {
 }
 
 export async function loginFb({commit}) {
+  commit('setIsLoadingFB', true)
   let user = await getUserFbInfo()
   _post(
     {
@@ -63,6 +64,7 @@ export async function loginFb({commit}) {
     }`
   )
     .then(({data}) => {
+      commit('setIsLoadingFB', false)
       _procAlert(data, 'Logged In Successfully!')
       if (!data.errors) {
         // Login successfully
@@ -78,10 +80,12 @@ export async function loginFb({commit}) {
     })
     .catch(err => {
       _procError(err)
+      commit('setIsLoadingFB', false)
     })
 }
 
 export async function registerFb({commit}) {
+  commit('setIsLoadingFB', true)
   let user = await getUserFbInfo()
   _post(
     {
@@ -101,6 +105,7 @@ export async function registerFb({commit}) {
     }`
   )
     .then(({data}) => {
+      commit('setIsLoadingFB', false)
       _procAlert(data, data.registerFb.msg)
       if (!data.errors) {
         // register successfully
@@ -116,6 +121,7 @@ export async function registerFb({commit}) {
     })
     .catch(err => {
       _procError(err)
+      commit('setIsLoadingFB', false)
     })
 }
 

@@ -7,6 +7,10 @@ export const setIsLoading = (state, payload) => {
   state.isLoading = payload
 }
 
+export const setIsLoadingFB = (state, payload) => {
+  state.isLoadingFB = payload
+}
+
 export const setCustomer = (state, payload) => {
   state.customer = payload
 }
