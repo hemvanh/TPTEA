@@ -6,11 +6,11 @@
           <q-icon name="menu"/>
         </q-btn>
         <q-toolbar-title>TP-TEA</q-toolbar-title>
-        <q-btn dense round @click="logout" aria-label="Menu">
+        <q-btn dense round @click="showSignOutModal" aria-label="Menu">
           <q-icon name="power_off"/>
         </q-btn>
       </q-toolbar>
-      <q-dialog v-model="signoutDialogModel" message="Do you really want to sign out?" cancel="Cancel" @ok="onOk" no-backdrop-dismiss>
+      <q-dialog v-model="signOutDialogModel" message="Do you really want to sign out?" cancel="Cancel" @ok="signOut()" no-backdrop-dismiss>
         <span slot="title">Confirm</span>
       </q-dialog>
     </q-layout-header>
@@ -51,16 +51,16 @@ export default {
   data() {
     return {
       leftDrawerOpen: this.$q.platform.is.desktop,
-      signoutDialogModel: false,
+      signOutDialogModel: false,
     }
   },
   methods: {
-    onOk() {
+    signOut() {
       localStorage.removeItem('auth-token')
       this.$router.push('/admin/login')
     },
-    logout() {
-      this.signoutDialogModel = true
+    showSignOutModal() {
+      this.signOutDialogModel = true
     },
   },
 }
