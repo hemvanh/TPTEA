@@ -102,6 +102,7 @@ module.exports = function(ctx) {
         'QBtnGroup',
         'QToggle',
         'QTree',
+        'QDialog',
       ],
       directives: ['Ripple', 'CloseOverlay'],
       // Quasar plugins
