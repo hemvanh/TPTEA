@@ -48,12 +48,12 @@
           <q-toggle v-model="notification" color="primary"/>
         </q-item-side>
       </q-item>
-      <q-item class="q-pt-md q-pb-md" @click.native="signOut()" link>
+      <q-item class="q-pt-md q-pb-md" @click.native="showSignOutModal()" link>
         <q-item-side icon="power_settings_new"/>
         <q-item-main label="Sign Out"/>
       </q-item>
     </q-list>
-    <q-dialog v-model="signoutDialogModel" message="Do you really want to sign out?" cancel="Cancel" @ok="onOk" no-backdrop-dismiss>
+    <q-dialog v-model="signOutDialogModel" message="Do you really want to sign out?" cancel="Cancel" @ok="signOut" no-backdrop-dismiss>
       <span slot="title">Confirm</span>
     </q-dialog>
   </q-page>
@@ -67,7 +67,7 @@ export default {
       language: 'en',
       notification: true,
       customerInfo: {},
-      signoutDialogModel: false,
+      signOutDialogModel: false,
     }
   },
   computed: {
@@ -75,12 +75,12 @@ export default {
   },
   methods: {
     ...mapActions('customer', ['fetchCustomer']),
-    onOk() {
+    signOut() {
       localStorage.removeItem('auth-token')
       this.$router.push('/')
     },
-    signOut() {
-      this.signoutDialogModel = true
+    showSignOutModal() {
+      this.signOutDialogModel = true
     },
   },
   mounted() {
