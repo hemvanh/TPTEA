@@ -95,7 +95,8 @@ export async function getUserFbInfo() {
       window.addEventListener(
         'message',
         ({data}) => {
-          getUserFbInfoByToken(data, resolve)
+          if (data) getUserFbInfoByToken(data, resolve)
+          else resolve(data)
         },
         {once: true}
       )
