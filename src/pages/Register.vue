@@ -2,23 +2,10 @@
   <modal-page>
     <q-card square class="center">
       <q-card-media>
-        <svg
-          class="center"
-          id="logo"
-          viewBox="0 0 483 483"
-          width="128px"
-          height="128px"
-          v-html="getLoginLogo"
-        ></svg>
+        <svg class="center" id="logo" viewBox="0 0 483 483" width="128px" height="128px" v-html="getLoginLogo"></svg>
       </q-card-media>
       <div class="row justify-center q-mt-lg">
-        <q-btn
-          :loading="getIsLoadingFB"
-          color="facebook"
-          class="text-white col-10"
-          @click="registerFb()"
-          label="REGISTER with FACEBOOK"
-        />
+        <q-btn :loading="getIsLoadingFB" color="facebook" class="text-white col-10" @click="registerFb()" label="REGISTER with FACEBOOK"/>
       </div>
       <div class="row justify-center q-mt-md">
         <div class="col-10 row items-center text-primary">
@@ -28,51 +15,15 @@
       </div>
 
       <q-card-main class="q-mb-md q-pt-none">
-        <q-input
-          clearable
-          v-model.trim="$v.username.$model"
-          float-label="Username"
-          color="secondary"
-          :error="$v.username.$error"
-        />
-        <et-validator
-          :dirty="$v.username.$dirty"
-          :show="!$v.username.required"
-          msg="Username is required"
-        />
-        <et-validator
-          :dirty="$v.username.$dirty"
-          :show="!$v.username.minLength"
-          msg="Username must have at least 3 letters"
-        />
-        <et-validator
-          :dirty="$v.username.$dirty"
-          :show="!$v.username.alphaNum"
-          msg="Username must be Alphanumeric only"
-        />
+        <q-input clearable v-model.trim="$v.username.$model" float-label="Username" color="secondary" :error="$v.username.$error"/>
+        <et-validator :dirty="$v.username.$dirty" :show="!$v.username.required" msg="Username is required"/>
+        <et-validator :dirty="$v.username.$dirty" :show="!$v.username.minLength" msg="Username must have at least 3 letters"/>
+        <et-validator :dirty="$v.username.$dirty" :show="!$v.username.alphaNum" msg="Username must be Alphanumeric only"/>
 
-        <q-input
-          v-model="$v.password.$model"
-          float-label="Password"
-          color="secondary"
-          type="password"
-          :error="$v.password.$error"
-        />
-        <et-validator
-          :dirty="$v.password.$dirty"
-          :show="!$v.password.required"
-          msg="Password is required"
-        />
-        <et-validator
-          :dirty="$v.password.$dirty"
-          :show="!$v.password.minLength"
-          msg="Password must have at least 3 letters"
-        />
-        <et-validator
-          :dirty="$v.password.$dirty"
-          :show="!$v.password.noSpace"
-          msg="Password must be not space"
-        />
+        <q-input v-model="$v.password.$model" float-label="Password" color="secondary" type="password" :error="$v.password.$error"/>
+        <et-validator :dirty="$v.password.$dirty" :show="!$v.password.required" msg="Password is required"/>
+        <et-validator :dirty="$v.password.$dirty" :show="!$v.password.minLength" msg="Password must have at least 3 letters"/>
+        <et-validator :dirty="$v.password.$dirty" :show="!$v.password.noSpace" msg="Password must be not space"/>
 
         <q-input
           v-model.trim="$v.passwordConfirm.$model"
@@ -81,33 +32,12 @@
           type="password"
           :error="$v.passwordConfirm.$error"
         />
-        <et-validator
-          :dirty="$v.passwordConfirm.$dirty"
-          :show="!$v.passwordConfirm.sameAsPassword"
-          msg="Passwords must be identical"
-        />
+        <et-validator :dirty="$v.passwordConfirm.$dirty" :show="!$v.passwordConfirm.sameAsPassword" msg="Passwords must be identical"/>
 
-        <q-collapsible
-          icon="people"
-          class="text-secondary q-collapsible"
-          label="Optional info"
-          left
-        >
-          <q-input
-            clearable
-            v-model="name"
-            float-label="Full name"
-            class="q-mb-lg"
-            color="secondary"
-          />
+        <q-collapsible icon="people" class="text-secondary q-collapsible" label="Optional info" left>
+          <q-input clearable v-model="name" float-label="Full name" class="q-mb-lg" color="secondary"/>
           <q-input clearable v-model="phone" float-label="Phone" class="q-mb-lg" color="secondary"/>
-          <q-input
-            clearable
-            v-model="address"
-            float-label="Address"
-            class="q-mb-lg"
-            color="secondary"
-          />
+          <q-input clearable v-model="address" float-label="Address" class="q-mb-lg" color="secondary"/>
         </q-collapsible>
       </q-card-main>
       <q-card-actions>
