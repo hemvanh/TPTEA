@@ -106,7 +106,8 @@ export async function getUserFbInfo(commit) {
       window.addEventListener(
         'message',
         ({data}) => {
-          getUserFbInfoByToken(data, resolve)
+          if (data.errorMgs) commit('setIsLoadingFB', false)
+          else getUserFbInfoByToken(data.accessToken, resolve)
         },
         {once: true}
       )
