@@ -84,3 +84,4 @@ All notable changes to this project will be documented in this file.
 - Receive payment function
 - Grid recive payment
 - Push notification
+- Add migration,seed maincategories
