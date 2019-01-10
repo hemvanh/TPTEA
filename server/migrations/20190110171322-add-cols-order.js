@@ -12,7 +12,7 @@ module.exports = {
               model: 'stores',
               key: 'id',
             },
-            allowNull: false,
+            allowNull: true,
             validate: {
               notEmpty: true,
             },
