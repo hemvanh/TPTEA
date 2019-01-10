@@ -1,28 +1,45 @@
 'use strict'
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return [
-      queryInterface.addColumn('orders', 'storeId', {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'stores',
-          key: 'id',
-        },
-        allowNull: false,
-        validate: {
-          notEmpty: true,
-        },
-      }),
-      queryInterface.addColumn('orders', 'delivery-address', {
-        type: Sequelize.STRING(500),
-        allowNull: false,
-        validate: {
-          notEmpty: true,
-        },
-      }),
-    ]
+    return queryInterface.sequelize.transaction(t => {
+      return Promise.all([
+        queryInterface.addColumn(
+          'orders',
+          'storeId',
+          {
+            type: Sequelize.INTEGER,
+            references: {
+              model: 'stores',
+              key: 'id',
+            },
+            allowNull: false,
+            validate: {
+              notEmpty: true,
+            },
+          },
+          {transaction: t}
+        ),
+        queryInterface.addColumn(
+          'orders',
+          'delivery-address',
+          {
+            type: Sequelize.STRING(500),
+            allowNull: false,
+            validate: {
+              notEmpty: true,
+            },
+          },
+          {transaction: t}
+        ),
+      ])
+    })
   },
   down: (queryInterface, Sequelize) => {
-    return [queryInterface.removeColumn('orders', 'storeId'), queryInterface.removeColumn('orders', 'delivery-address')]
+    return queryInterface.sequelize.transaction(t => {
+      return Promise.all([
+        queryInterface.removeColumn('orders', 'storeId', {transaction: t}),
+        queryInterface.removeColumn('orders', 'delivery-address', {transaction: t}),
+      ])
+    })
   },
 }
