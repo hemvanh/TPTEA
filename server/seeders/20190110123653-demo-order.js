@@ -19,7 +19,7 @@ module.exports = {
     var data = await getData().catch(err => console.log(err))
     return queryInterface.bulkInsert(
       'orders',
-      _d.map(data, row => _d.pick(row, 'id', 'customerid','deliverystoreid','deliverysddress','deliverycontact','deliverytime','pickupstoreid','pickuptime','isstorepickup')),
+      _d.map(data, row => _d.pick(row, 'id', 'customerid','deliverystoreid','deliveryaddress','deliverycontact','deliverytime','pickupstoreid','pickuptime','isstorepickup')),
       {}
     )
   },
