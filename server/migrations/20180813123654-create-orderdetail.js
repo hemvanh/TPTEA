@@ -22,6 +22,9 @@ module.exports = {
           key: 'id',
         },
       },
+      modifierIds: {
+        type: Sequelize.STRING(40),
+      },
       quantity: {
         type: Sequelize.INTEGER,
       },

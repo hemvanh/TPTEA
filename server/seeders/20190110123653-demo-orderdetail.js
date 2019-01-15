@@ -20,7 +20,7 @@ module.exports = {
     var data = await getData().catch(err => console.log(err))
     return queryInterface.bulkInsert(
       'orderdetails',
-      _d.map(data, row => _d.pick(row, 'id', 'orderid', 'menuid', 'quantity', 'price')),
+      _d.map(data, row => _d.pick(row, 'id', 'orderid', 'menuid', 'modifierids', 'quantity', 'price')),
       {}
     )
   },
