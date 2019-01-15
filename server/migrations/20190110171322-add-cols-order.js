@@ -36,6 +36,15 @@ module.exports = {
         ),
         queryInterface.addColumn(
           'orders',
+          'deliveryTime',
+          {
+            type: Sequelize.DATE,
+            allowNull: true,
+          },
+          {transaction: t}
+        ),
+        queryInterface.addColumn(
+          'orders',
           'pickUpStoreId',
           {
             type: Sequelize.INTEGER,
@@ -49,6 +58,16 @@ module.exports = {
           {
             type: Sequelize.DATE,
             allowNull: true,
+          },
+          {transaction: t}
+        ),
+        queryInterface.addColumn(
+          'orders',
+          'isStorePickUp',
+          {
+            type: Sequelize.BOOLEAN,
+            allowNull: true,
+            defaultValue: false,
           },
           {transaction: t}
         ),

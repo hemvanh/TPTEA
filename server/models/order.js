@@ -7,8 +7,10 @@ module.exports = (sequelize, DataTypes) => {
       deliveryStoreId: DataTypes.INTEGER,
       deliveryAddress: DataTypes.STRING(500),
       deliveryContact: DataTypes.STRING(50),
+      deliveryTime: DataTypes.DATE,
       pickUpStoreId: DataTypes.INTEGER,
       pickUpTime: DataTypes.DATE,
+      isStorePickUp: DataTypes.BOOLEAN,
     },
     {}
   )
