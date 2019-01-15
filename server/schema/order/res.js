@@ -5,8 +5,8 @@ function createOrder(input) {
   input['deliveryStoreId'] = input.placeOrderMethod.deliveryStoreId
   input['deliveryAddress'] = input.placeOrderMethod.deliveryAddress
   input['deliveryContact'] = input.placeOrderMethod.deliveryContact
-  input['pickUpStoreId'] = input.placeOrderMethod.deliveryStoreId
-  input['pickUpTime'] = input.placeOrderMethod.deliveryStoreId
+  input['pickUpStoreId'] = input.placeOrderMethod.pickUpStoreId
+  input['pickUpTime'] = input.placeOrderMethod.pickUpTime
   delete input.placeOrderMethod
   return input
 }
@@ -51,9 +51,7 @@ const resolvers = {
       try {
         return sequelize
           .transaction(async t => {
-            let order = createOrder(input)
-            console.log(input)
-            return await Order.create(order, {transaction: t}).then(async createdOrder => {
+            return await Order.create(createOrder(input), {transaction: t}).then(async createdOrder => {
               await OrderDetail.bulkCreate(await createOrderDetail(input.orderDetails, createdOrder.orderId), {transaction: t})
               return createdOrder
             })
