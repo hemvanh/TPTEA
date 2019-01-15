@@ -1,6 +1,15 @@
 import {Order, OrderDetail, Menu, Modifier, sequelize} from '../../models'
 import {_auth} from '../../util'
 
+function createOrder(input) {
+  input['deliveryStoreId'] = input.placeOrderMethod.deliveryStoreId
+  input['deliveryAddress'] = input.placeOrderMethod.deliveryAddress
+  input['deliveryContact'] = input.placeOrderMethod.deliveryContact
+  input['pickUpStoreId'] = input.placeOrderMethod.deliveryStoreId
+  input['pickUpTime'] = input.placeOrderMethod.deliveryStoreId
+  delete input.placeOrderMethod
+  return input
+}
 async function createOrderDetail(orderDetails, orderId) {
   try {
     let menuIds = orderDetails.map(orderDetail => orderDetail.menuId)
@@ -42,7 +51,9 @@ const resolvers = {
       try {
         return sequelize
           .transaction(async t => {
-            return await Order.create(input, {transaction: t}).then(async createdOrder => {
+            let order = createOrder(input)
+            console.log(input)
+            return await Order.create(order, {transaction: t}).then(async createdOrder => {
               await OrderDetail.bulkCreate(await createOrderDetail(input.orderDetails, createdOrder.orderId), {transaction: t})
               return createdOrder
             })

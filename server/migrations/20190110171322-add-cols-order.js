@@ -5,7 +5,7 @@ module.exports = {
       return Promise.all([
         queryInterface.addColumn(
           'orders',
-          'storeId',
+          'deliveryStoreId',
           {
             type: Sequelize.INTEGER,
             references: {
@@ -13,21 +13,42 @@ module.exports = {
               key: 'id',
             },
             allowNull: true,
-            validate: {
-              notEmpty: true,
-            },
           },
           {transaction: t}
         ),
         queryInterface.addColumn(
           'orders',
-          'delivery-address',
+          'deliveryAddress',
           {
             type: Sequelize.STRING(500),
-            allowNull: false,
-            validate: {
-              notEmpty: true,
-            },
+            allowNull: true,
+          },
+          {transaction: t}
+        ),
+        queryInterface.addColumn(
+          'orders',
+          'deliveryContact',
+          {
+            type: Sequelize.STRING(50),
+            allowNull: true,
+          },
+          {transaction: t}
+        ),
+        queryInterface.addColumn(
+          'orders',
+          'pickUpStoreId',
+          {
+            type: Sequelize.INTEGER,
+            allowNull: true,
+          },
+          {transaction: t}
+        ),
+        queryInterface.addColumn(
+          'orders',
+          'pickUpTime',
+          {
+            type: Sequelize.DATE,
+            allowNull: true,
           },
           {transaction: t}
         ),
@@ -37,8 +58,11 @@ module.exports = {
   down: (queryInterface, Sequelize) => {
     return queryInterface.sequelize.transaction(t => {
       return Promise.all([
-        queryInterface.removeColumn('orders', 'storeId', {transaction: t}),
-        queryInterface.removeColumn('orders', 'delivery-address', {transaction: t}),
+        queryInterface.removeColumn('orders', 'deliveryStoreId', {transaction: t}),
+        queryInterface.removeColumn('orders', 'deliveryAddress', {transaction: t}),
+        queryInterface.removeColumn('orders', 'deliveryContact', {transaction: t}),
+        queryInterface.removeColumn('orders', 'pickUpStoreId', {transaction: t}),
+        queryInterface.removeColumn('orders', 'pickUpTime', {transaction: t}),
       ])
     })
   },
