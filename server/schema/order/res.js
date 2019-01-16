@@ -48,7 +48,7 @@ const resolvers = {
         return sequelize
           .transaction(async t => {
             return await Order.create(formatOrderInput(input), {transaction: t}).then(async createdOrder => {
-              await OrderDetail.bulkCreate(await createOrderDetail(input.orderDetails, createdOrder.orderId), {transaction: t})
+              await OrderDetail.bulkCreate(await createOrderDetail(input.orderDetails, createdOrder.get('id')), {transaction: t})
               return createdOrder
             })
           })
