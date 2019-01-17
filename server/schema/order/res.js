@@ -1,5 +1,7 @@
-import {Order, OrderDetail, Menu, Modifier, sequelize} from '../../models'
+import {Order, OrderDetail, Menu, Modifier, sequelize, Store} from '../../models'
 import {_auth} from '../../util'
+const fetch = require('node-fetch')
+const apiKey = 'AIzaSyCEUChDraEFCd3f79AK2xSh1FFDDJUpnWw'
 
 function formatOrderInput(input) {
   const formatedInput = {...input, ...input.placeOrderMethod}
@@ -39,12 +41,47 @@ function getModifiersPrice(modifiers, modifierIds) {
     throw new Error(error.message)
   }
 }
+async function getLocation(address) {
+  let url = 'https://maps.google.com/maps/api/geocode/json?address=' + address + '&key=' + apiKey
+  var location = await fetch(url)
+    .then(res => res.json())
+    .then(json => {
+      //console.log(json.results)
+      return json.results[0].geometry.location
+    })
+  console.log('location:%s', location)
+}
+async function getDistances(devliveryAddress, storesAddress) {
+  let url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + devliveryAddress + '&destinations=' + storesAddress + '&key=' + apiKey
+  await fetch(url)
+    .then(res => res.json())
+    .then(json => {
+      //console.log(json.results)
+      return json
+    })
+  console.log('location:%s', location)
+}
+async function fetchLocationStores(){
+  let stores = await Store.findAll()
+  return stores
+  /*
+    return {
+      _1:{
+        lat: 134,
+        lng: 123
+      },
+      _2
+    }
+  */
+}
+
 const resolvers = {
   RootQuery: {},
   RootMutation: {
     async placeOrder(_, {input}, {loggedInUser}) {
       _auth(loggedInUser)
       try {
+        getLocation(input.placeOrderMethod.deliveryAddress)
         return sequelize
           .transaction(async t => {
             return await Order.create(formatOrderInput(input), {transaction: t}).then(async createdOrder => {
