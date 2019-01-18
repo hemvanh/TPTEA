@@ -33,7 +33,7 @@ All notable changes to this project will be documented in this file.
 - Main Categories page [@phillip](https://github.com/hemvanh/TPTEA/pull/108)
 - API Place Order [@phillip](https://github.com/hemvanh/TPTEA/pull/111)
 - Button add to card
-- Finding nearest store [@phillip](https://github.com/hemvanh/TPTEA/pull/117)
+- Finding nearest store [@phillip](https://github.com/hemvanh/TPTEA/pull/118)
 ### Removed 
 - Join now button
 - Remove parameter "expiry" and change parameter "amount" to "giftCardid" in genGiftCard function
