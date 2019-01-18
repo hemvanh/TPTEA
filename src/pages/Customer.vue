@@ -52,10 +52,6 @@
         <q-item-side icon="power_settings_new"/>
         <q-item-main label="Sign Out"/>
       </q-item>
-      <q-item class="q-pt-md q-pb-md" @click.native="placeOrder()" link>
-        <q-item-side icon="power_settings_new"/>
-        <q-item-main label="Place Order"/>
-      </q-item>
     </q-list>
     <q-dialog v-model="signOutDialogModel" message="Do you really want to sign out?" cancel="Cancel" @ok="signOut" no-backdrop-dismiss>
       <span slot="title">Confirm</span>
