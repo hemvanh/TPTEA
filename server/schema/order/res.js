@@ -65,18 +65,15 @@ async function getDistances(deliveryAddress, storesAddress) {
       return json
     })
 }
+function findStore(name){
+  let storeId = 0
+
+  return storeId
+}
 async function fetchLocationStores(){
-  let stores = await Store.findAll()
+  let stores = await Store.findAll({where: {id: [1,2,3]}})
+  console.log(stores)
   return stores
-  /*
-    return {
-      _1:{
-        lat: 134,
-        lng: 123
-      },
-      _2
-    }
-  */
 }
 
 const resolvers = {
@@ -86,20 +83,21 @@ const resolvers = {
       _auth(loggedInUser)
       try {
         //getLocation(input.placeOrderMethod.deliveryAddress)
-        getDistances('sa','sdss')
-        return sequelize
-          .transaction(async t => {
-            return await Order.create(formatOrderInput(input), {transaction: t}).then(async createdOrder => {
-              await OrderDetail.bulkCreate(await createOrderDetail(input.orderDetails, createdOrder.get('id')), {transaction: t})
-              return createdOrder
-            })
-          })
-          .then(createdOrder => {
-            return createdOrder.get('id')
-          })
-          .catch(err => {
-            throw new Error(err)
-          })
+        //getDistances('sa','sdss')
+        fetchLocationStores()
+        // return sequelize
+        //   .transaction(async t => {
+        //     return await Order.create(formatOrderInput(input), {transaction: t}).then(async createdOrder => {
+        //       await OrderDetail.bulkCreate(await createOrderDetail(input.orderDetails, createdOrder.get('id')), {transaction: t})
+        //       return createdOrder
+        //     })
+        //   })
+        //   .then(createdOrder => {
+        //     return createdOrder.get('id')
+        //   })
+        //   .catch(err => {
+        //     throw new Error(err)
+        //   })
       } catch (error) {
         throw new Error(error.message)
       }
