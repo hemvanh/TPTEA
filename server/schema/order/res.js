@@ -50,7 +50,6 @@ async function findNearestStore(deliveryAddress) {
   let distances = await fetch(url)
     .then(res => res.json())
     .then(json => {
-      console.log(JSON.stringify(json))
       return json
     })
   let storeName = findNearestStoreName(distances)
