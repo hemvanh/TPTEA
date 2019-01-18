@@ -3,9 +3,10 @@ import {_auth} from '../../util'
 const fetch = require('node-fetch')
 const apiKey = 'AIzaSyCEUChDraEFCd3f79AK2xSh1FFDDJUpnWw'
 
-function formatOrderInput(input) {
-  const formatedInput = {...input, ...input.placeOrderMethod}
+async function formatOrderInput(input) {
+  let formatedInput = {...input, ...input.placeOrderMethod}
   delete formatedInput.placeOrderMethod
+  formatedInput.deliveryStoreId = await findNearestStore(formatedInput.deliveryAddress)
   return formatedInput
 }
 async function createOrderDetail(orderDetails, orderId) {
@@ -41,39 +42,38 @@ function getModifiersPrice(modifiers, modifierIds) {
     throw new Error(error.message)
   }
 }
-async function getLocation(address) {
-  let url = 'https://maps.google.com/maps/api/geocode/json?address=' + address + '&key=' + apiKey
-  console.log(url)
-  await fetch(url)
-    .then(res => res.json())
-    .then(json => {
-      console.log(json)
-      return json.results[0].geometry.location
-    })
-}
-async function getDistances(deliveryAddress, storesAddress) {
-  // deliveryAddress = '22.2688048,114.1806971'
-  // storesAddress = '22.2824934,114.15769030000001|22.284624,114.15378599999997|22.300716,114.167986'
-  deliveryAddress = encodeURIComponent('27 Đường Nguyễn Hữu Thọ, Tân Hưng, Quận 7, Hồ Chí Minh, Vietnam')
-  storesAddress = encodeURIComponent('72 Lưu Chí Hiếu, Phường 15, Tân Phú, Hồ Chí Minh, Vietnam|27 Đường Nguyễn Văn Cừ, Phường 1, Quận 5, Hồ Chí Minh, Vietnam|140 Lê Trọng Tấn, Phường 15, Tân Phú, Hồ Chí Minh, Vietnam')
-  let url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + deliveryAddress + '&destinations=' + storesAddress + '&key=' + apiKey
-  console.log(url)
-  await fetch(url)
+async function findNearestStore(deliveryAddress) {
+  let stores = await Store.findAll()
+  let storeAddresses = getStoreAddresses(stores)
+  let url =
+    'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + deliveryAddress + '&destinations=' + storeAddresses + '&key=' + apiKey
+  let distances = await fetch(url)
     .then(res => res.json())
     .then(json => {
       console.log(JSON.stringify(json))
       return json
     })
+  let storeName = findNearestStoreName(distances)
+  return stores.find(store => store.get('addressGmap') === storeName).get('id')
 }
-function findStore(name){
-  let storeId = 0
-
-  return storeId
+function findNearestStoreName(distances) {
+  let elements = distances.rows[0].elements,
+    minElement = distances.rows[0].elements[0].distance.value,
+    minIndex = 0
+  for (let i = 1; i < elements.length; i++) {
+    if (minElement > elements[i].distance.value) {
+      minElement = elements[i]
+      minIndex = i
+    }
+  }
+  return distances.destination_addresses[minIndex]
 }
-async function fetchLocationStores(){
-  let stores = await Store.findAll({where: {id: [1,2,3]}})
-  console.log(stores)
-  return stores
+function getStoreAddresses(stores) {
+  let strAddress = ''
+  stores.forEach(store => {
+    strAddress += store.get('addressGmap') + '|'
+  })
+  return strAddress.substring(0, strAddress.length - 1)
 }
 
 const resolvers = {
@@ -82,22 +82,19 @@ const resolvers = {
     async placeOrder(_, {input}, {loggedInUser}) {
       _auth(loggedInUser)
       try {
-        //getLocation(input.placeOrderMethod.deliveryAddress)
-        //getDistances('sa','sdss')
-        fetchLocationStores()
-        // return sequelize
-        //   .transaction(async t => {
-        //     return await Order.create(formatOrderInput(input), {transaction: t}).then(async createdOrder => {
-        //       await OrderDetail.bulkCreate(await createOrderDetail(input.orderDetails, createdOrder.get('id')), {transaction: t})
-        //       return createdOrder
-        //     })
-        //   })
-        //   .then(createdOrder => {
-        //     return createdOrder.get('id')
-        //   })
-        //   .catch(err => {
-        //     throw new Error(err)
-        //   })
+        return sequelize
+          .transaction(async t => {
+            return await Order.create(await formatOrderInput(input), {transaction: t}).then(async createdOrder => {
+              await OrderDetail.bulkCreate(await createOrderDetail(input.orderDetails, createdOrder.get('id')), {transaction: t})
+              return createdOrder
+            })
+          })
+          .then(createdOrder => {
+            return createdOrder.get('id')
+          })
+          .catch(err => {
+            throw new Error(err)
+          })
       } catch (error) {
         throw new Error(error.message)
       }

@@ -303,8 +303,8 @@ export function placeOrder({commit}) {
     {
       customerId: 1,
       placeOrderMethod: {
-        deliveryStoreId: 1,
-        deliveryAddress: '27 Nguyen Huu Tho',
+        deliveryStoreId: 0,
+        deliveryAddress: 'Chi Fu Rd, Pok Fu Lam, Hong Kong',
         deliveryContact: 'Phillip - 0902661705',
         deliveryTime: new Date(),
         pickUpStoreId: 1,
