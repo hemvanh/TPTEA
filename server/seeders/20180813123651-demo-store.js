@@ -25,7 +25,7 @@ module.exports = {
     return queryInterface.bulkInsert(
       'stores',
       _d.map(data, row =>
-        _d.pick(row, ['id', 'name', 'address', 'phone', 'lat', 'lng', 'city', 'nation'])
+        _d.pick(row, ['id', 'name', 'address', 'addressgmap', 'phone', 'lat', 'lng', 'city', 'nation'])
       ),
       {}
     )

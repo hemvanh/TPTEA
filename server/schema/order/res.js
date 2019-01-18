@@ -43,23 +43,27 @@ function getModifiersPrice(modifiers, modifierIds) {
 }
 async function getLocation(address) {
   let url = 'https://maps.google.com/maps/api/geocode/json?address=' + address + '&key=' + apiKey
-  var location = await fetch(url)
-    .then(res => res.json())
-    .then(json => {
-      //console.log(json.results)
-      return json.results[0].geometry.location
-    })
-  console.log('location:%s', location)
-}
-async function getDistances(devliveryAddress, storesAddress) {
-  let url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + devliveryAddress + '&destinations=' + storesAddress + '&key=' + apiKey
+  console.log(url)
   await fetch(url)
     .then(res => res.json())
     .then(json => {
-      //console.log(json.results)
+      console.log(json)
+      return json.results[0].geometry.location
+    })
+}
+async function getDistances(deliveryAddress, storesAddress) {
+  // deliveryAddress = '22.2688048,114.1806971'
+  // storesAddress = '22.2824934,114.15769030000001|22.284624,114.15378599999997|22.300716,114.167986'
+  deliveryAddress = encodeURIComponent('27 Đường Nguyễn Hữu Thọ, Tân Hưng, Quận 7, Hồ Chí Minh, Vietnam')
+  storesAddress = encodeURIComponent('72 Lưu Chí Hiếu, Phường 15, Tân Phú, Hồ Chí Minh, Vietnam|27 Đường Nguyễn Văn Cừ, Phường 1, Quận 5, Hồ Chí Minh, Vietnam|140 Lê Trọng Tấn, Phường 15, Tân Phú, Hồ Chí Minh, Vietnam')
+  let url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + deliveryAddress + '&destinations=' + storesAddress + '&key=' + apiKey
+  console.log(url)
+  await fetch(url)
+    .then(res => res.json())
+    .then(json => {
+      console.log(JSON.stringify(json))
       return json
     })
-  console.log('location:%s', location)
 }
 async function fetchLocationStores(){
   let stores = await Store.findAll()
@@ -81,7 +85,8 @@ const resolvers = {
     async placeOrder(_, {input}, {loggedInUser}) {
       _auth(loggedInUser)
       try {
-        getLocation(input.placeOrderMethod.deliveryAddress)
+        //getLocation(input.placeOrderMethod.deliveryAddress)
+        getDistances('sa','sdss')
         return sequelize
           .transaction(async t => {
             return await Order.create(formatOrderInput(input), {transaction: t}).then(async createdOrder => {
