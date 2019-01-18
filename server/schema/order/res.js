@@ -1,5 +1,6 @@
 import {Order, OrderDetail, Menu, Modifier, sequelize, Store} from '../../models'
 import {_auth} from '../../util'
+import _d from 'lodash'
 const fetch = require('node-fetch')
 const apiKey = 'AIzaSyCEUChDraEFCd3f79AK2xSh1FFDDJUpnWw'
 
@@ -47,30 +48,19 @@ async function findNearestStore(deliveryAddress) {
   let storeAddresses = getStoreAddresses(stores)
   let url =
     'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + deliveryAddress + '&destinations=' + storeAddresses + '&key=' + apiKey
-  let distances = await fetch(url)
-    .then(res => res.json())
-    .then(json => {
-      return json
-    })
+  let distances = await fetch(url).then(async res => await res.json())
   let storeName = findNearestStoreName(distances)
-  return stores.find(store => store.get('addressGmap') === storeName).get('id')
+  return stores.find(store => store.get('gmapAddress') === storeName).get('id')
 }
 function findNearestStoreName(distances) {
-  let elements = distances.rows[0].elements,
-    minElement = distances.rows[0].elements[0].distance.value,
-    minIndex = 0
-  for (let i = 1; i < elements.length; i++) {
-    if (minElement > elements[i].distance.value) {
-      minElement = elements[i]
-      minIndex = i
-    }
-  }
+  let elements = _d.map(distances.rows[0].elements, 'distance.value')
+  let minIndex = elements.indexOf(_d.min(elements))
   return distances.destination_addresses[minIndex]
 }
 function getStoreAddresses(stores) {
   let strAddress = ''
   stores.forEach(store => {
-    strAddress += store.get('addressGmap') + '|'
+    strAddress += store.get('gmapAddress') + '|'
   })
   return strAddress.substring(0, strAddress.length - 1)
 }
