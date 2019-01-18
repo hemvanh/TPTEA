@@ -14,7 +14,7 @@ module.exports = {
       address: {
         type: Sequelize.STRING(500),
       },
-      addressGmap: {
+      gmapAddress: {
         type: Sequelize.STRING(500),
       },
       phone: {
