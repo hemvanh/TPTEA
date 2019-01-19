@@ -3,11 +3,11 @@ import {_auth} from '../../util'
 import _d from 'lodash'
 const fetch = require('node-fetch')
 const apiKey = 'AIzaSyCEUChDraEFCd3f79AK2xSh1FFDDJUpnWw'
-
+const MAX_STORE_DISTANCE = 20000
 async function formatOrderInput(input) {
   let formatedInput = {...input, ...input.placeOrderMethod}
   delete formatedInput.placeOrderMethod
-  formatedInput.deliveryStoreId = await findNearestStore(formatedInput.deliveryAddress)
+  formatedInput.deliveryStoreId = await findNearestStoreId(formatedInput.deliveryAddress)
   return formatedInput
 }
 async function createOrderDetail(orderDetails, orderId) {
@@ -43,26 +43,38 @@ function getModifiersPrice(modifiers, modifierIds) {
     throw new Error(error.message)
   }
 }
-async function findNearestStore(deliveryAddress) {
-  let stores = await Store.findAll()
-  let storeAddresses = getStoreAddresses(stores)
-  let url =
-    'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + deliveryAddress + '&destinations=' + storeAddresses + '&key=' + apiKey
-  let distances = await fetch(url).then(async res => await res.json())
-  let storeName = findNearestStoreName(distances)
-  return stores.find(store => store.get('gmapAddress') === storeName).get('id')
+async function findNearestStoreId(deliveryAddress) {
+  try {
+    let stores = await Store.findAll()
+    let storeAddresses = getStoreAddresses(stores)
+    let url =
+      'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + deliveryAddress + '&destinations=' + storeAddresses + '&key=' + apiKey
+    let distances = await fetch(url).then(async res => await res.json())
+    let storeName = findNearestStoreName(distances)
+    return _d.find(stores, {dataValues: {gmapAddress: storeName}}).get('id')
+  } catch (error) {
+    throw new Error(error)
+  }
 }
 function findNearestStoreName(distances) {
   let elements = _d.map(distances.rows[0].elements, 'distance.value')
   let minIndex = elements.indexOf(_d.min(elements))
+  let nearestDistance = elements[minIndex]
+  if (nearestDistance === undefined) {
+    throw new Error('No nearest store found !')
+  } else if (nearestDistance > MAX_STORE_DISTANCE) {
+    throw new Error(
+      'The distance from the nearest store is: ' +
+        Math.floor(nearestDistance / 1000) +
+        'km, which is more than ' +
+        Math.floor(MAX_STORE_DISTANCE / 1000) +
+        'km'
+    )
+  }
   return distances.destination_addresses[minIndex]
 }
 function getStoreAddresses(stores) {
-  let strAddress = ''
-  stores.forEach(store => {
-    strAddress += store.get('gmapAddress') + '|'
-  })
-  return strAddress.substring(0, strAddress.length - 1)
+  return _d.map(stores, 'dataValues.gmapAddress').join('|')
 }
 
 const resolvers = {
