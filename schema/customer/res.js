@@ -163,48 +163,23 @@ var resolvers = {
       }
 
       return genCustomerPaymentId;
-    }()
-  },
-  RootMutation: {
-    login: function () {
+    }(),
+    registerPushSubscription: function () {
       var _ref11 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(_, _ref10) {
         var input = _ref10.input;
-        var user, valid;
         return regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return _models.Customer.findOne({ where: { username: input.username } });
+                return _models.PushSubscription.create(input).then(function () {
+                  return 'Create Success';
+                });
 
               case 2:
-                user = _context5.sent;
+                return _context5.abrupt('return', _context5.sent);
 
-                if (user) {
-                  _context5.next = 5;
-                  break;
-                }
-
-                throw new Error('Account not found. Please try again!');
-
-              case 5:
-                _context5.next = 7;
-                return _bcrypt2.default.compare(input.password, user.password);
-
-              case 7:
-                valid = _context5.sent;
-
-                if (valid) {
-                  _context5.next = 10;
-                  break;
-                }
-
-                throw new Error('Wrong Password ...');
-
-              case 10:
-                return _context5.abrupt('return', generateLoginJwt(input));
-
-              case 11:
+              case 3:
               case 'end':
                 return _context5.stop();
             }
@@ -212,30 +187,84 @@ var resolvers = {
         }, _callee5, this);
       }));
 
-      function login(_x12, _x13) {
+      function registerPushSubscription(_x12, _x13) {
         return _ref11.apply(this, arguments);
+      }
+
+      return registerPushSubscription;
+    }()
+  },
+  RootMutation: {
+    login: function () {
+      var _ref13 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(_, _ref12) {
+        var input = _ref12.input;
+        var user, valid;
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.next = 2;
+                return _models.Customer.findOne({ where: { username: input.username } });
+
+              case 2:
+                user = _context6.sent;
+
+                if (user) {
+                  _context6.next = 5;
+                  break;
+                }
+
+                throw new Error('Account not found. Please try again!');
+
+              case 5:
+                _context6.next = 7;
+                return _bcrypt2.default.compare(input.password, user.password);
+
+              case 7:
+                valid = _context6.sent;
+
+                if (valid) {
+                  _context6.next = 10;
+                  break;
+                }
+
+                throw new Error('Wrong Password ...');
+
+              case 10:
+                return _context6.abrupt('return', generateLoginJwt(input));
+
+              case 11:
+              case 'end':
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this);
+      }));
+
+      function login(_x14, _x15) {
+        return _ref13.apply(this, arguments);
       }
 
       return login;
     }(),
     register: function () {
-      var _ref13 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(_, _ref12) {
+      var _ref15 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8(_, _ref14) {
         var _this = this;
 
-        var input = _ref12.input;
+        var input = _ref14.input;
         var user;
-        return regeneratorRuntime.wrap(function _callee7$(_context7) {
+        return regeneratorRuntime.wrap(function _callee8$(_context8) {
           while (1) {
-            switch (_context7.prev = _context7.next) {
+            switch (_context8.prev = _context8.next) {
               case 0:
-                _context7.next = 2;
+                _context8.next = 2;
                 return _models.Customer.findOne({ where: { username: input.username, type: input.type } });
 
               case 2:
-                user = _context7.sent;
+                user = _context8.sent;
 
                 if (!user) {
-                  _context7.next = 5;
+                  _context8.next = 5;
                   break;
                 }
 
@@ -243,68 +272,30 @@ var resolvers = {
 
               case 5:
                 input.password = _bcrypt2.default.hashSync(input.password, SALT);
-                _context7.next = 8;
-                return _models.Customer.upsert(input).then(_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
-                  return regeneratorRuntime.wrap(function _callee6$(_context6) {
+                _context8.next = 8;
+                return _models.Customer.upsert(input).then(_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
+                  return regeneratorRuntime.wrap(function _callee7$(_context7) {
                     while (1) {
-                      switch (_context6.prev = _context6.next) {
+                      switch (_context7.prev = _context7.next) {
                         case 0:
-                          _context6.next = 2;
+                          _context7.next = 2;
                           return generateLoginJwt(input);
 
                         case 2:
-                          return _context6.abrupt('return', _context6.sent);
+                          return _context7.abrupt('return', _context7.sent);
 
                         case 3:
                         case 'end':
-                          return _context6.stop();
+                          return _context7.stop();
                       }
                     }
-                  }, _callee6, _this);
+                  }, _callee7, _this);
                 })));
 
               case 8:
-                return _context7.abrupt('return', _context7.sent);
+                return _context8.abrupt('return', _context8.sent);
 
               case 9:
-              case 'end':
-                return _context7.stop();
-            }
-          }
-        }, _callee7, this);
-      }));
-
-      function register(_x14, _x15) {
-        return _ref13.apply(this, arguments);
-      }
-
-      return register;
-    }(),
-    loginFb: function () {
-      var _ref16 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8(_, _ref15) {
-        var input = _ref15.input;
-        var user;
-        return regeneratorRuntime.wrap(function _callee8$(_context8) {
-          while (1) {
-            switch (_context8.prev = _context8.next) {
-              case 0:
-                _context8.next = 2;
-                return _models.Customer.findOne({ where: { username: input.username } });
-
-              case 2:
-                user = _context8.sent;
-
-                if (user) {
-                  _context8.next = 5;
-                  break;
-                }
-
-                throw new Error('Account not found. Please Register by Facebook First!');
-
-              case 5:
-                return _context8.abrupt('return', generateLoginJwt(input));
-
-              case 6:
               case 'end':
                 return _context8.stop();
             }
@@ -312,27 +303,65 @@ var resolvers = {
         }, _callee8, this);
       }));
 
-      function loginFb(_x16, _x17) {
-        return _ref16.apply(this, arguments);
+      function register(_x16, _x17) {
+        return _ref15.apply(this, arguments);
+      }
+
+      return register;
+    }(),
+    loginFb: function () {
+      var _ref18 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9(_, _ref17) {
+        var input = _ref17.input;
+        var user;
+        return regeneratorRuntime.wrap(function _callee9$(_context9) {
+          while (1) {
+            switch (_context9.prev = _context9.next) {
+              case 0:
+                _context9.next = 2;
+                return _models.Customer.findOne({ where: { username: input.username } });
+
+              case 2:
+                user = _context9.sent;
+
+                if (user) {
+                  _context9.next = 5;
+                  break;
+                }
+
+                throw new Error('Account not found. Please Register by Facebook First!');
+
+              case 5:
+                return _context9.abrupt('return', generateLoginJwt(input));
+
+              case 6:
+              case 'end':
+                return _context9.stop();
+            }
+          }
+        }, _callee9, this);
+      }));
+
+      function loginFb(_x18, _x19) {
+        return _ref18.apply(this, arguments);
       }
 
       return loginFb;
     }(),
     registerFb: function () {
-      var _ref18 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee10(_, _ref17) {
+      var _ref20 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee11(_, _ref19) {
         var _this2 = this;
 
-        var input = _ref17.input;
+        var input = _ref19.input;
         var user, msgRes;
-        return regeneratorRuntime.wrap(function _callee10$(_context10) {
+        return regeneratorRuntime.wrap(function _callee11$(_context11) {
           while (1) {
-            switch (_context10.prev = _context10.next) {
+            switch (_context11.prev = _context11.next) {
               case 0:
-                _context10.next = 2;
+                _context11.next = 2;
                 return _models.Customer.findOne({ where: { username: input.username, type: input.type } });
 
               case 2:
-                user = _context10.sent;
+                user = _context11.sent;
                 msgRes = '';
 
                 if (user) {
@@ -341,49 +370,49 @@ var resolvers = {
                 } else {
                   msgRes = 'Regitered Successfully!';
                 }
-                _context10.next = 7;
-                return _models.Customer.upsert(input).then(_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
-                  return regeneratorRuntime.wrap(function _callee9$(_context9) {
+                _context11.next = 7;
+                return _models.Customer.upsert(input).then(_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
+                  return regeneratorRuntime.wrap(function _callee10$(_context10) {
                     while (1) {
-                      switch (_context9.prev = _context9.next) {
+                      switch (_context10.prev = _context10.next) {
                         case 0:
-                          return _context9.abrupt('return', generateLoginJwt(input, msgRes));
+                          return _context10.abrupt('return', generateLoginJwt(input, msgRes));
 
                         case 1:
                         case 'end':
-                          return _context9.stop();
+                          return _context10.stop();
                       }
                     }
-                  }, _callee9, _this2);
+                  }, _callee10, _this2);
                 })));
 
               case 7:
-                return _context10.abrupt('return', _context10.sent);
+                return _context11.abrupt('return', _context11.sent);
 
               case 8:
               case 'end':
-                return _context10.stop();
+                return _context11.stop();
             }
           }
-        }, _callee10, this);
+        }, _callee11, this);
       }));
 
-      function registerFb(_x18, _x19) {
-        return _ref18.apply(this, arguments);
+      function registerFb(_x20, _x21) {
+        return _ref20.apply(this, arguments);
       }
 
       return registerFb;
     }(),
     deleteCustomers: function () {
-      var _ref22 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee11(_, _ref20, _ref21) {
-        var input = _ref20.input;
-        var loggedInUser = _ref21.loggedInUser;
-        return regeneratorRuntime.wrap(function _callee11$(_context11) {
+      var _ref24 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee12(_, _ref22, _ref23) {
+        var input = _ref22.input;
+        var loggedInUser = _ref23.loggedInUser;
+        return regeneratorRuntime.wrap(function _callee12$(_context12) {
           while (1) {
-            switch (_context11.prev = _context11.next) {
+            switch (_context12.prev = _context12.next) {
               case 0:
                 (0, _util._authAdmin)(loggedInUser);
-                _context11.next = 3;
+                _context12.next = 3;
                 return _models.Customer.destroy({
                   where: {
                     id: {
@@ -393,29 +422,29 @@ var resolvers = {
                 });
 
               case 3:
-                return _context11.abrupt('return', _context11.sent);
+                return _context12.abrupt('return', _context12.sent);
 
               case 4:
               case 'end':
-                return _context11.stop();
+                return _context12.stop();
             }
           }
-        }, _callee11, this);
+        }, _callee12, this);
       }));
 
-      function deleteCustomers(_x20, _x21, _x22) {
-        return _ref22.apply(this, arguments);
+      function deleteCustomers(_x22, _x23, _x24) {
+        return _ref24.apply(this, arguments);
       }
 
       return deleteCustomers;
     }(),
     updateCustomer: function () {
-      var _ref25 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee12(_, _ref23, _ref24) {
-        var input = _ref23.input;
-        var loggedInUser = _ref24.loggedInUser;
-        return regeneratorRuntime.wrap(function _callee12$(_context12) {
+      var _ref27 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee13(_, _ref25, _ref26) {
+        var input = _ref25.input;
+        var loggedInUser = _ref26.loggedInUser;
+        return regeneratorRuntime.wrap(function _callee13$(_context13) {
           while (1) {
-            switch (_context12.prev = _context12.next) {
+            switch (_context13.prev = _context13.next) {
               case 0:
                 (0, _util._authAdmin)(loggedInUser);
                 if (input.password !== '') {
@@ -423,7 +452,7 @@ var resolvers = {
                 } else {
                   delete input.password;
                 }
-                _context12.next = 4;
+                _context13.next = 4;
                 return _models.Customer.update(input, {
                   where: {
                     id: input.id
@@ -433,40 +462,40 @@ var resolvers = {
                 });
 
               case 4:
-                return _context12.abrupt('return', _context12.sent);
+                return _context13.abrupt('return', _context13.sent);
 
               case 5:
               case 'end':
-                return _context12.stop();
+                return _context13.stop();
             }
           }
-        }, _callee12, this);
+        }, _callee13, this);
       }));
 
-      function updateCustomer(_x23, _x24, _x25) {
-        return _ref25.apply(this, arguments);
+      function updateCustomer(_x25, _x26, _x27) {
+        return _ref27.apply(this, arguments);
       }
 
       return updateCustomer;
     }(),
     createCustomer: function () {
-      var _ref28 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee13(_, _ref26, _ref27) {
-        var input = _ref26.input;
-        var loggedInUser = _ref27.loggedInUser;
+      var _ref30 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee14(_, _ref28, _ref29) {
+        var input = _ref28.input;
+        var loggedInUser = _ref29.loggedInUser;
         var user;
-        return regeneratorRuntime.wrap(function _callee13$(_context13) {
+        return regeneratorRuntime.wrap(function _callee14$(_context14) {
           while (1) {
-            switch (_context13.prev = _context13.next) {
+            switch (_context14.prev = _context14.next) {
               case 0:
                 (0, _util._authAdmin)(loggedInUser);
-                _context13.next = 3;
+                _context14.next = 3;
                 return _models.Customer.findOne({ where: { username: input.username } });
 
               case 3:
-                user = _context13.sent;
+                user = _context14.sent;
 
                 if (!user) {
-                  _context13.next = 6;
+                  _context14.next = 6;
                   break;
                 }
 
@@ -475,54 +504,54 @@ var resolvers = {
               case 6:
                 input.type = 'password';
                 input.password = _bcrypt2.default.hashSync(input.password, SALT);
-                _context13.next = 10;
+                _context14.next = 10;
                 return _models.Customer.create(input).then(function (customer) {
                   return customer;
                 });
 
               case 10:
-                return _context13.abrupt('return', _context13.sent);
+                return _context14.abrupt('return', _context14.sent);
 
               case 11:
               case 'end':
-                return _context13.stop();
+                return _context14.stop();
             }
           }
-        }, _callee13, this);
+        }, _callee14, this);
       }));
 
-      function createCustomer(_x26, _x27, _x28) {
-        return _ref28.apply(this, arguments);
+      function createCustomer(_x28, _x29, _x30) {
+        return _ref30.apply(this, arguments);
       }
 
       return createCustomer;
     }(),
     applyGiftCard: function () {
-      var _ref31 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee15(_, _ref29, _ref30) {
+      var _ref33 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee16(_, _ref31, _ref32) {
         var _this3 = this;
 
-        var input = _ref29.input;
-        var loggedInUser = _ref30.loggedInUser;
+        var input = _ref31.input;
+        var loggedInUser = _ref32.loggedInUser;
 
-        var _ref32, giftCard, expired, user, amount, balance;
+        var _ref34, giftCard, expired, user, amount, balance;
 
-        return regeneratorRuntime.wrap(function _callee15$(_context15) {
+        return regeneratorRuntime.wrap(function _callee16$(_context16) {
           while (1) {
-            switch (_context15.prev = _context15.next) {
+            switch (_context16.prev = _context16.next) {
               case 0:
-                _context15.prev = 0;
+                _context16.prev = 0;
 
                 (0, _util._auth)(loggedInUser);
-                _context15.next = 4;
+                _context16.next = 4;
                 return (0, _util.authGiftCard)(input.jwt);
 
               case 4:
-                _ref32 = _context15.sent;
-                giftCard = _ref32.giftCard;
-                expired = _ref32.expired;
+                _ref34 = _context16.sent;
+                giftCard = _ref34.giftCard;
+                expired = _ref34.expired;
 
                 if (!expired) {
-                  _context15.next = 9;
+                  _context16.next = 9;
                   break;
                 }
 
@@ -530,73 +559,73 @@ var resolvers = {
 
               case 9:
                 if (!giftCard.customerId) {
-                  _context15.next = 11;
+                  _context16.next = 11;
                   break;
                 }
 
                 throw new Error('The gift card is not available anymore!');
 
               case 11:
-                _context15.next = 13;
+                _context16.next = 13;
                 return _models.Customer.findById(input.customerId);
 
               case 13:
-                user = _context15.sent;
+                user = _context16.sent;
 
                 if (!user) {
-                  _context15.next = 22;
+                  _context16.next = 22;
                   break;
                 }
 
                 amount = giftCard.amount;
                 balance = user.get('balance') + amount;
-                _context15.next = 19;
-                return user.update({ balance: balance }).then(_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee14() {
-                  return regeneratorRuntime.wrap(function _callee14$(_context14) {
+                _context16.next = 19;
+                return user.update({ balance: balance }).then(_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee15() {
+                  return regeneratorRuntime.wrap(function _callee15$(_context15) {
                     while (1) {
-                      switch (_context14.prev = _context14.next) {
+                      switch (_context15.prev = _context15.next) {
                         case 0:
-                          _context14.next = 2;
+                          _context15.next = 2;
                           return giftCard.update({ customerId: input.customerId }).then(function () {
                             return { balance: balance, amount: amount };
                           });
 
                         case 2:
-                          return _context14.abrupt('return', _context14.sent);
+                          return _context15.abrupt('return', _context15.sent);
 
                         case 3:
                         case 'end':
-                          return _context14.stop();
+                          return _context15.stop();
                       }
                     }
-                  }, _callee14, _this3);
+                  }, _callee15, _this3);
                 })));
 
               case 19:
-                return _context15.abrupt('return', _context15.sent);
+                return _context16.abrupt('return', _context16.sent);
 
               case 22:
                 throw new Error('Customer info Not Found!');
 
               case 23:
-                _context15.next = 28;
+                _context16.next = 28;
                 break;
 
               case 25:
-                _context15.prev = 25;
-                _context15.t0 = _context15['catch'](0);
-                throw new Error(_context15.t0.message);
+                _context16.prev = 25;
+                _context16.t0 = _context16['catch'](0);
+                throw new Error(_context16.t0.message);
 
               case 28:
               case 'end':
-                return _context15.stop();
+                return _context16.stop();
             }
           }
-        }, _callee15, this, [[0, 25]]);
+        }, _callee16, this, [[0, 25]]);
       }));
 
-      function applyGiftCard(_x29, _x30, _x31) {
-        return _ref31.apply(this, arguments);
+      function applyGiftCard(_x31, _x32, _x33) {
+        return _ref33.apply(this, arguments);
       }
 
       return applyGiftCard;

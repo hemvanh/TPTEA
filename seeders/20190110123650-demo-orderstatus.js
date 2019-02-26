@@ -5,7 +5,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 var GoogleSpreadsheet = require('google-spreadsheet');
 var _d = require('lodash');
 var creds = require('../TP-TEA-HK-4be78b7ad5f8.json');
-var doc = new GoogleSpreadsheet('1jjROzUPDDOz5MgRLlG6uyA3SJz7ps5fmw-L6SI81gD8');
+var doc = new GoogleSpreadsheet('1l-z14dx93syqESH6yunAsXMRafCz-nNqV4_7vuoMORQ');
+
 function getData() {
   return new Promise(function (resolve, reject) {
     doc.useServiceAccountAuth(creds, function (err) {
@@ -15,6 +16,7 @@ function getData() {
     });
   });
 }
+
 module.exports = {
   up: function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(queryInterface, Sequelize) {
@@ -30,8 +32,8 @@ module.exports = {
 
             case 2:
               data = _context.sent;
-              return _context.abrupt('return', queryInterface.bulkInsert('orders', _d.map(data, function (row) {
-                return _d.pick(row, 'id', 'customerid');
+              return _context.abrupt('return', queryInterface.bulkInsert('orderstatuses', _d.map(data, function (row) {
+                return _d.pick(row, 'id', 'name', 'notes');
               }), {}));
 
             case 4:
@@ -51,6 +53,6 @@ module.exports = {
 
 
   down: function down(queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('orders', null, {});
+    return queryInterface.bulkInsert('orderstatuses', null, {});
   }
 };

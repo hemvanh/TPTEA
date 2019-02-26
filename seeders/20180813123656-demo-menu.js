@@ -35,7 +35,7 @@ module.exports = {
             case 2:
               data = _context.sent;
               return _context.abrupt('return', queryInterface.bulkInsert('menus', _d.map(data, function (row) {
-                return _d.pick(row, ['id', 'name', 'desc', 'price', 'img']);
+                return _d.pick(row, ['id', 'name', 'desc', 'price', 'img', 'categoryid']);
               }), {}));
 
             case 4:

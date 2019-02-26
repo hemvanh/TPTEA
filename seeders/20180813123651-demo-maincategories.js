@@ -7,7 +7,7 @@ var _d = require('lodash');
 var creds = require('../TP-TEA-HK-4be78b7ad5f8.json');
 
 // Create a document object using the ID of the spreadsheet - obtained from its URL.
-var doc = new GoogleSpreadsheet('1ZX_2fPQS17VRemtTF4m74Y_XFmjOHyqWEn8JXDdmyDI');
+var doc = new GoogleSpreadsheet('1DulYEp9x5t33Beg7ys4ZadErrK9LcBaBN11tyca08KQ');
 
 function getData() {
   return new Promise(function (resolve, reject) {
@@ -34,8 +34,8 @@ module.exports = {
 
             case 2:
               data = _context.sent;
-              return _context.abrupt('return', queryInterface.bulkInsert('modifiers', _d.map(data, function (row) {
-                return _d.pick(row, ['id', 'name', 'price', 'grouptitle', 'grouptype', 'isdefault']);
+              return _context.abrupt('return', queryInterface.bulkInsert('maincategories', _d.map(data, function (row) {
+                return _d.pick(row, ['id', 'name', 'desc', 'img']);
               }), {}));
 
             case 4:
@@ -55,6 +55,6 @@ module.exports = {
 
 
   down: function down(queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('modifiers', null, {});
+    return queryInterface.bulkDelete('maincategories', null, {});
   }
 };

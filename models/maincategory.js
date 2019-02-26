@@ -1,16 +1,16 @@
 'use strict';
 
 module.exports = function (sequelize, DataTypes) {
-  var Category = sequelize.define('Category', {
+  var MainCategory = sequelize.define('MainCategory', {
     name: DataTypes.STRING,
     desc: DataTypes.STRING,
     img: DataTypes.STRING
   }, {});
-  Category.associate = function (models) {
+  MainCategory.associate = function (models) {
     // associations can be defined here
-    Category.hasMany(models.Menu, {
-      foreignKey: 'categoryId'
+    MainCategory.hasMany(models.Category, {
+      foreignKey: 'mainCategoryId'
     });
   };
-  return Category;
+  return MainCategory;
 };

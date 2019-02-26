@@ -10,22 +10,20 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 var resolvers = {
   RootQuery: {
-    fetchModifiers: function () {
+    fetchMainCategories: function () {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(_, _ref) {
         var input = _ref.input;
-        var menu;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                menu = new _models.Menu(input);
-                _context.next = 3;
-                return menu.getModifiers();
+                _context.next = 2;
+                return _models.MainCategory.findAll();
 
-              case 3:
+              case 2:
                 return _context.abrupt('return', _context.sent);
 
-              case 4:
+              case 3:
               case 'end':
                 return _context.stop();
             }
@@ -33,11 +31,11 @@ var resolvers = {
         }, _callee, this);
       }));
 
-      function fetchModifiers(_x, _x2) {
+      function fetchMainCategories(_x, _x2) {
         return _ref2.apply(this, arguments);
       }
 
-      return fetchModifiers;
+      return fetchMainCategories;
     }()
   },
   RootMutation: {}

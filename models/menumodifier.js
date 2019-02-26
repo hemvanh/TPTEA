@@ -1,12 +1,12 @@
 'use strict';
 
 module.exports = function (sequelize, DataTypes) {
-  var menumodify = sequelize.define('menumodify', {
+  var MenuModifier = sequelize.define('MenuModifier', {
     menuId: DataTypes.INTEGER,
     modifierId: DataTypes.INTEGER
   }, {});
-  menumodify.associate = function (models) {
+  MenuModifier.associate = function (models) {
     // associations can be defined here
   };
-  return menumodify;
+  return MenuModifier;
 };

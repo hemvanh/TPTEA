@@ -5,9 +5,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 var GoogleSpreadsheet = require('google-spreadsheet');
 var _d = require('lodash');
 var creds = require('../TP-TEA-HK-4be78b7ad5f8.json');
-
-// Create a document object using the ID of the spreadsheet - obtained from its URL.
-var doc = new GoogleSpreadsheet('1ZX_2fPQS17VRemtTF4m74Y_XFmjOHyqWEn8JXDdmyDI');
+var doc = new GoogleSpreadsheet('1GMxPRlBSyukoiGSETq7xU4p0UsOv6zUNr0HyMO0MxoQ');
 
 function getData() {
   return new Promise(function (resolve, reject) {
@@ -34,8 +32,8 @@ module.exports = {
 
             case 2:
               data = _context.sent;
-              return _context.abrupt('return', queryInterface.bulkInsert('modifiers', _d.map(data, function (row) {
-                return _d.pick(row, ['id', 'name', 'price', 'grouptitle', 'grouptype', 'isdefault']);
+              return _context.abrupt('return', queryInterface.bulkInsert('orderdetails', _d.map(data, function (row) {
+                return _d.pick(row, 'id', 'orderid', 'menuid', 'modifierids', 'quantity', 'price');
               }), {}));
 
             case 4:
@@ -55,6 +53,6 @@ module.exports = {
 
 
   down: function down(queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('modifiers', null, {});
+    return queryInterface.bulkInsert('orderdetails', null, {});
   }
 };

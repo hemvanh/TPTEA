@@ -1,4 +1,4 @@
-importScripts("precache-manifest.5bd3fbd222b5ab56f9b187c8c3a9fe4b.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.1/workbox-sw.js");
+importScripts("precache-manifest.767a9d57ac497dae8eebd603a4f724b1.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.1/workbox-sw.js");
 
 /*
  * This file (which will be your service worker)
@@ -24,7 +24,17 @@ self.addEventListener('fetch', event => {
     })
   )
 })
-
+self.addEventListener('push', event => {
+  var options = {
+    body: event.data.text(),
+    icon: 'statics/icons/apple-icon-152x152.png',
+  }
+  event.waitUntil(self.registration.showNotification('TPTEA', options))
+})
+self.addEventListener('notificationclick', event => {
+  self.notification.close()
+  event.waitUntil(clients.openWindow('/'))
+})
 workbox.skipWaiting()
 workbox.clientsClaim()
 

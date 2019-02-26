@@ -30,6 +30,13 @@ All notable changes to this project will be documented in this file.
 - Auto redirect from http to https protocol
 - Sign-Out confirmation
 - Add app version in Member details and admin Home page
+- Main Categories page [@phillip](https://github.com/hemvanh/TPTEA/pull/108)
+- API Place Order [@phillip](https://github.com/hemvanh/TPTEA/pull/111)
+- Button add to card
+- Finding nearest store [@phillip](https://github.com/hemvanh/TPTEA/pull/118)
+- Orders Management for Admin [@phillip](https://github.com/hemvanh/TPTEA/pull/124) [@phillip](https://github.com/hemvanh/TPTEA/pull/126)
+- Modifier CRUD Admin [@phillip](https://github.com/hemvanh/TPTEA/pull/130)
+- Add categories admin page
 ### Removed 
 - Join now button
 - Remove parameter "expiry" and change parameter "amount" to "giftCardid" in genGiftCard function
@@ -69,6 +76,9 @@ All notable changes to this project will be documented in this file.
 - Adjust createGiftCard, simplify and shorten jwt by moving Gift Card info DB
 - Adjust authGiftCard
 - Adjust applyGiftCard (update customerId to GiftCard table)
+- Change style of category and menu page like the coffee house
+- Change style of menu detail page like the coffee house
+- Sort order migrate in folder server
 ### Added
 - Customer Login feature
 - Customer Register feature
@@ -83,3 +93,5 @@ All notable changes to this project will be documented in this file.
 - Add IsPrinted to Giftcard
 - Receive payment function
 - Grid recive payment
+- Push notification
+- Add migration,seed maincategories

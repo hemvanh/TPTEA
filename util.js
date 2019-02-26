@@ -3,13 +3,17 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.verifyCustomerPaymentId = exports.authGiftCard = exports.genGiftCard = exports._authAdmin = exports._auth = undefined;
+exports.saveImage = exports.verifyCustomerPaymentId = exports.authGiftCard = exports.genGiftCard = exports._authAdmin = exports._auth = undefined;
 
 var _jsonwebtoken = require('jsonwebtoken');
 
 var _jsonwebtoken2 = _interopRequireDefault(_jsonwebtoken);
 
 var _models = require('./models');
+
+var _fs = require('fs');
+
+var _fs2 = _interopRequireDefault(_fs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -127,5 +131,38 @@ var verifyCustomerPaymentId = exports.verifyCustomerPaymentId = function () {
 
   return function verifyCustomerPaymentId(_x2) {
     return _ref2.apply(this, arguments);
+  };
+}();
+
+var saveImage = exports.saveImage = function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(imageUploadData) {
+    var ext, img, imgName;
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            if (!_fs2.default.existsSync('statics')) {
+              _fs2.default.mkdirSync('statics');
+            }
+            ext = imageUploadData.split(';')[0].match(/jpeg|png/)[0];
+            img = imageUploadData.replace(/^data:image\/\w+;base64,/, '');
+            imgName = new Date().getTime() + '.' + ext;
+            return _context3.abrupt('return', new Promise(function (resolve) {
+              _fs2.default.writeFile('statics/' + imgName, img, 'base64', function (err) {
+                if (err) throw err;
+                resolve(imgName);
+              });
+            }));
+
+          case 5:
+          case 'end':
+            return _context3.stop();
+        }
+      }
+    }, _callee3, undefined);
+  }));
+
+  return function saveImage(_x3) {
+    return _ref3.apply(this, arguments);
   };
 }();

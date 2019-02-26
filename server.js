@@ -37,7 +37,7 @@ var auth = (0, _expressJwt2.default)({
 });
 
 app.use((0, _serveStatic2.default)(__dirname));
-app.use('/api', _bodyParser2.default.json(), auth, (0, _apolloServerExpress.graphqlExpress)(function (req) {
+app.use('/api', _bodyParser2.default.json({ limit: '5mb' }), auth, (0, _apolloServerExpress.graphqlExpress)(function (req) {
   return {
     schema: _schema2.default,
     context: {
