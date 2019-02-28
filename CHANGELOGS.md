@@ -36,7 +36,8 @@ All notable changes to this project will be documented in this file.
 - Finding nearest store [@phillip](https://github.com/hemvanh/TPTEA/pull/118)
 - Orders Management for Admin [@phillip](https://github.com/hemvanh/TPTEA/pull/124) [@phillip](https://github.com/hemvanh/TPTEA/pull/126)
 - Modifier CRUD Admin [@phillip](https://github.com/hemvanh/TPTEA/pull/130)
-- Add categories admin page
+- Add categories admin page 
+- Paynow feature [@phillip](https://github.com/hemvanh/TPTEA/pull/134)
 ### Removed 
 - Join now button
 - Remove parameter "expiry" and change parameter "amount" to "giftCardid" in genGiftCard function
