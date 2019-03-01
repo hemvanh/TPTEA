@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ## 0.0.2za - 2018-12-12
+### Fix bugs
+- Change Column name Receiving Time to Time (Order Admin)
+- Display of address & time PlaceOrderMethod correctly by Deliver & Pickup mode
+- Clear Address, Contact info when user chose Pickup order mode
+- Purify aliasType (don't uppercase 1st letter, add more 's')
+- Disable button (+) of ETModal when don't have any changing)
+- Add alert when the order has been placed successfully
+- Warning confirm miss handling catch (cancel)
+- Disable notify successfully temporary
+- Fix responsive for grid in admin page
 ### Added
 - Menus Listing after clicking a single Catefory
 - Register link at login page

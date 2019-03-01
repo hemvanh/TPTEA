@@ -17,7 +17,7 @@ var createOrder = function () {
             order = formatOrderInput(input);
 
             if (order.isStorePickUp) {
-              _context.next = 6;
+              _context.next = 8;
               break;
             }
 
@@ -26,27 +26,33 @@ var createOrder = function () {
 
           case 5:
             order.storeId = _context.sent;
+            _context.next = 10;
+            break;
 
-          case 6:
+          case 8:
+            order.deliveryAddress = null;
+            order.deliveryContact = null;
+
+          case 10:
             order.orderStatusId = DEFAULT_ORDER_STATUS;
 
             orderDetails = order.orderDetails;
             menuIds = orderDetails.map(function (orderDetail) {
               return orderDetail.menuId;
             });
-            _context.next = 11;
+            _context.next = 15;
             return _models.Menu.findAll({ where: { id: menuIds } });
 
-          case 11:
+          case 15:
             menus = _context.sent;
             arrModifierIds = orderDetails.map(function (orderDetail) {
               return orderDetail.modifierIds;
             });
             modifierIds = [].concat(_toConsumableArray(new Set([].concat.apply([], arrModifierIds))));
-            _context.next = 16;
+            _context.next = 20;
             return _models.Modifier.findAll({ where: { id: modifierIds } });
 
-          case 16:
+          case 20:
             modifiers = _context.sent;
             totalAmount = 0;
 
@@ -63,17 +69,17 @@ var createOrder = function () {
 
             return _context.abrupt('return', order);
 
-          case 23:
-            _context.prev = 23;
+          case 27:
+            _context.prev = 27;
             _context.t0 = _context['catch'](0);
             throw new Error(_context.t0.message);
 
-          case 26:
+          case 30:
           case 'end':
             return _context.stop();
         }
       }
-    }, _callee, this, [[0, 23]]);
+    }, _callee, this, [[0, 27]]);
   }));
 
   return function createOrder(_x) {
