@@ -4,8 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _models = require('../../models');
 
 var _util = require('../../util');
@@ -77,40 +75,20 @@ var resolvers = {
       var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(_, _ref5, _ref6) {
         var input = _ref5.input;
         var loggedInUser = _ref6.loggedInUser;
-        var img;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 (0, _util._authAdmin)(loggedInUser);
-
-                if (!(input.img === '')) {
-                  _context3.next = 5;
-                  break;
-                }
-
-                _context3.t0 = '';
-                _context3.next = 8;
-                break;
-
-              case 5:
-                _context3.next = 7;
-                return (0, _util.saveImage)(input.img);
-
-              case 7:
-                _context3.t0 = _context3.sent;
-
-              case 8:
-                img = _context3.t0;
-                _context3.next = 11;
-                return _models.Category.create(_extends({}, input, { img: img })).then(function (catefgory) {
+                _context3.next = 3;
+                return _models.Category.create(input).then(function (catefgory) {
                   return catefgory;
                 });
 
-              case 11:
+              case 3:
                 return _context3.abrupt('return', _context3.sent);
 
-              case 12:
+              case 4:
               case 'end':
                 return _context3.stop();
             }
@@ -128,28 +106,12 @@ var resolvers = {
       var _ref10 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(_, _ref8, _ref9) {
         var input = _ref8.input;
         var loggedInUser = _ref9.loggedInUser;
-        var img;
         return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
                 (0, _util._authAdmin)(loggedInUser);
-
-                if (!(input.img.indexOf('base64') > 0)) {
-                  _context4.next = 6;
-                  break;
-                }
-
-                _context4.next = 4;
-                return (0, _util.saveImage)(input.img);
-
-              case 4:
-                img = _context4.sent;
-
-                input.img = img;
-
-              case 6:
-                _context4.next = 8;
+                _context4.next = 3;
                 return _models.Category.update(input, {
                   where: {
                     id: input.id
@@ -158,10 +120,10 @@ var resolvers = {
                   return input;
                 });
 
-              case 8:
+              case 3:
                 return _context4.abrupt('return', _context4.sent);
 
-              case 9:
+              case 4:
               case 'end':
                 return _context4.stop();
             }
