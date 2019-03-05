@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "921acf05c64b35bee26e6ea08de312b1",
-    "url": "statics/menu-09.jpg"
+    "revision": "f80fa3346495230d68e56782522d2d76",
+    "url": "statics/menu-08.jpg"
   },
   {
     "revision": "fbaf41b5399f3f0eccb7c1dfaefe5d11",
@@ -10,14 +10,6 @@ self.__precacheManifest = [
   {
     "revision": "9d0f0f63eeeba097498e",
     "url": "js/vendor.9d0f0f6.js"
-  },
-  {
-    "revision": "3f8b06faef3cc025af3fc047245920a9",
-    "url": "statics/splash/iphonexr_splash.png"
-  },
-  {
-    "revision": "9bbdaeda8887f8613d1c915388c65a28",
-    "url": "statics/splash/iphone6_splash.png"
   },
   {
     "revision": "91343476a0c20afc474c527dc4e7130a",
@@ -44,20 +36,16 @@ self.__precacheManifest = [
     "url": "statics/main-category-hot.jpg"
   },
   {
+    "revision": "e0e41797ce02ad7afa59302519f65062",
+    "url": "statics/splash/iphonexsmax_splash.png"
+  },
+  {
     "revision": "e823136824cab8b5cad0a52aee5596ef",
     "url": "statics/splash/ipadpro1_splash.png"
   },
   {
-    "revision": "943b239ce0d615228200f7190de047d8",
-    "url": "statics/icons/favicon-32x32.png"
-  },
-  {
-    "revision": "c285996d6f7dbef24ebbbfbe630e812a",
-    "url": "statics/icons/china-flag.png"
-  },
-  {
-    "revision": "77bce50393376332bc7b948a33f1143f",
-    "url": "statics/icons/icon-192x192.png"
+    "revision": "4f11d96ddf31938e9cdb732d7c15e151",
+    "url": "statics/splash/ipad_splash.png"
   },
   {
     "revision": "94927b05c26b2a1b4d585c7305b9d04d",
@@ -68,8 +56,16 @@ self.__precacheManifest = [
     "url": "statics/icons/favicon-16x16.png"
   },
   {
-    "revision": "262f954ddadfae773a3548b2330ea819",
-    "url": "statics/icons/taiwan-flag.png"
+    "revision": "c285996d6f7dbef24ebbbfbe630e812a",
+    "url": "statics/icons/china-flag.png"
+  },
+  {
+    "revision": "7d658a65f98809eb34686beb06e127d3",
+    "url": "statics/icons/icon-128x128.png"
+  },
+  {
+    "revision": "943b239ce0d615228200f7190de047d8",
+    "url": "statics/icons/favicon-32x32.png"
   },
   {
     "revision": "c3033218b49491bb0ac4cc87d10c8ed8",
@@ -80,12 +76,16 @@ self.__precacheManifest = [
     "url": "statics/icons/tptea-marker-icon.png"
   },
   {
+    "revision": "262f954ddadfae773a3548b2330ea819",
+    "url": "statics/icons/taiwan-flag.png"
+  },
+  {
     "revision": "644d672e528a3a2c937bb8156ee55e73",
     "url": "statics/qr-code-sample.png"
   },
   {
-    "revision": "7d658a65f98809eb34686beb06e127d3",
-    "url": "statics/icons/icon-128x128.png"
+    "revision": "77bce50393376332bc7b948a33f1143f",
+    "url": "statics/icons/icon-192x192.png"
   },
   {
     "revision": "5825f4ab6a9f6f15a15d9296fea2ecd4",
@@ -108,6 +108,10 @@ self.__precacheManifest = [
     "url": "statics/icons/icon-512x512.png"
   },
   {
+    "revision": "33fa3c71f424a8e2cbc06ddeadce0779",
+    "url": "statics/icons/icon-384x384.png"
+  },
+  {
     "revision": "9f528180cb170f84786f1ea2b02f4b9b",
     "url": "statics/menu-04.jpg"
   },
@@ -120,28 +124,24 @@ self.__precacheManifest = [
     "url": "statics/menu-05.jpg"
   },
   {
-    "revision": "f80fa3346495230d68e56782522d2d76",
-    "url": "statics/menu-08.jpg"
-  },
-  {
     "revision": "659724041c635d8a6dba",
     "url": "js/app.bed77ae.js"
+  },
+  {
+    "revision": "921acf05c64b35bee26e6ea08de312b1",
+    "url": "statics/menu-09.jpg"
   },
   {
     "revision": "1fa7aa13b79ee66027c54d2df27e0f56",
     "url": "statics/menu-11.jpg"
   },
   {
-    "revision": "33fa3c71f424a8e2cbc06ddeadce0779",
-    "url": "statics/icons/icon-384x384.png"
+    "revision": "c38f90d42db60f76c44a13d9ca345b04",
+    "url": "statics/category-02.jpg"
   },
   {
     "revision": "a54d4cff09320803d08dc3c14eb436ad",
     "url": "statics/category-01.jpg"
-  },
-  {
-    "revision": "c38f90d42db60f76c44a13d9ca345b04",
-    "url": "statics/category-02.jpg"
   },
   {
     "revision": "b3b5cd863f68ad9e430a1df56904a8d2",
@@ -168,12 +168,12 @@ self.__precacheManifest = [
     "url": "statics/menu-10.jpg"
   },
   {
-    "revision": "9f9f4ad95f1d8e87a648f2373a657ec4",
-    "url": "statics/splash/iphone5_splash.png"
-  },
-  {
     "revision": "dc6ae0779b40cefaa09d95e6a9dfd3ba",
     "url": "statics/quasar-logo.png"
+  },
+  {
+    "revision": "9f9f4ad95f1d8e87a648f2373a657ec4",
+    "url": "statics/splash/iphone5_splash.png"
   },
   {
     "revision": "fb12fdfd6f762c27f2d5d1cf86748c02",
@@ -188,6 +188,10 @@ self.__precacheManifest = [
     "url": "statics/menu-06.jpg"
   },
   {
+    "revision": "9bbdaeda8887f8613d1c915388c65a28",
+    "url": "statics/splash/iphone6_splash.png"
+  },
+  {
     "revision": "cdec18eac0fb4339eba6bdeff36f75c4",
     "url": "statics/splash/iphonex_splash.png"
   },
@@ -200,16 +204,12 @@ self.__precacheManifest = [
     "url": "statics/category-05.jpg"
   },
   {
+    "revision": "3f8b06faef3cc025af3fc047245920a9",
+    "url": "statics/splash/iphonexr_splash.png"
+  },
+  {
     "revision": "791d460848051485414e037bfbcf3452",
     "url": "statics/news1.jpg"
-  },
-  {
-    "revision": "e0e41797ce02ad7afa59302519f65062",
-    "url": "statics/splash/iphonexsmax_splash.png"
-  },
-  {
-    "revision": "4f11d96ddf31938e9cdb732d7c15e151",
-    "url": "statics/splash/ipad_splash.png"
   },
   {
     "revision": "d9c608dcea837a8f2c275b0b874da757",

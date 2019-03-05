@@ -1,4 +1,4 @@
-importScripts("precache-manifest.ce20b2c2903f8f83742eb1b48b395d1e.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.1/workbox-sw.js");
+importScripts("precache-manifest.13a059e477a9b6076294562bfb46a456.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.1/workbox-sw.js");
 
 /*
  * This file (which will be your service worker)
@@ -18,6 +18,9 @@ workbox.routing.registerRoute(({url}) => {
 workbox.precaching.precache([{url: '/CHANGELOGS.md', revision: new Date().getTime().toString()}])
 
 self.addEventListener('fetch', event => {
+  if (event.request.method === 'POST') {
+    return
+  }
   event.respondWith(
     caches.match(event.request).then(response => {
       return response || fetch(event.request)
