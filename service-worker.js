@@ -1,4 +1,4 @@
-importScripts("precache-manifest.0965f774ef7b1d66a857b3d5d097e0a0.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.1/workbox-sw.js");
+importScripts("precache-manifest.0c600100dbecdde89b808f6e620da3bd.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.1/workbox-sw.js");
 
 /*
  * This file (which will be your service worker)
@@ -17,33 +17,14 @@ workbox.routing.registerRoute(({url}) => {
 
 workbox.precaching.precache([{url: '/CHANGELOGS.md', revision: new Date().getTime().toString()}])
 
-// self.addEventListener('fetch', event => {
-//   if (event.request.method === 'POST') {
-//     return
-//   }
-//   event.respondWith(
-//     caches.match(event.request).then(response => {
-//       return response || fetch(event.request)
-//     })
-//   )
-// })
 self.addEventListener('fetch', event => {
+  if (event.request.method === 'POST') {
+    return
+  }
   event.respondWith(
-    (async function() {
-      // Respond from the cache if we can
-      if (event.request.method === 'POST') {
-        return
-      }
-      const cachedResponse = await caches.match(event.request)
-      if (cachedResponse) return cachedResponse
-
-      // Else, use the preloaded response, if it's there
-      const response = await event.preloadResponse
-      if (response) return response
-
-      // Else try the network.
-      return fetch(event.request)
-    })()
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request)
+    })
   )
 })
 self.addEventListener('push', event => {
