@@ -18,7 +18,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bcrypt": "^3.0.0",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.13",
     "vivus": "^0.4.4",
     "vue-i18n": "^7.3.3",
     "vuelidate": "^0.7.4"
