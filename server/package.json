@@ -8,7 +8,7 @@
   "author": "ET",
   "license": "ISC",
   "dependencies": {
-    "apollo-server-express": "^1.4.0",
+    "apollo-server-express": "^2.14.2",
     "babel-polyfill": "^6.26.0",
     "bcrypt": "^3.0.0",
     "dotenv": "^6.0.0",
