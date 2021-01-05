@@ -16,7 +16,7 @@
     "deploy": "npm run build && npm run pushlive"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bcrypt": "^3.0.0",
     "lodash": "^4.17.10",
     "vivus": "^0.4.4",
