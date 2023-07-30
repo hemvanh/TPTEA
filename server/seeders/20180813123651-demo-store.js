@@ -1,34 +1,22 @@
 'use strict'
-
-var GoogleSpreadsheet = require('google-spreadsheet')
-var _d = require('lodash')
-var creds = require('../TP-TEA-HK-4be78b7ad5f8.json')
-
-// Create a document object using the ID of the spreadsheet - obtained from its URL.
-var doc = new GoogleSpreadsheet('1qUFzIif4CFQ64-jf4OOtFQK8rKY7YHqN3PxSATHjy3w')
-
-function getData() {
-  return new Promise((resolve, reject) => {
-    doc.useServiceAccountAuth(creds, err => {
-      doc.getRows(1, (err, rows) => {
-        if (err) reject(err)
-        else resolve(rows)
-      })
-    })
-  })
-}
-
+var {faker} = require('@faker-js/faker')
 module.exports = {
   async up(queryInterface, Sequelize) {
-    var data = await getData().catch(err => console.log(err))
-    // console.log(data)
-    return queryInterface.bulkInsert(
-      'stores',
-      _d.map(data, row =>
-        _d.pick(row, ['id', 'name', 'address', 'gmapaddress', 'phone', 'lat', 'lng', 'city', 'nation'])
-      ),
-      {}
-    )
+    var stores = [],
+      location = faker.location
+    Array.from({length: 10}).forEach(() => {
+      stores.push({
+        name: faker.person.fullName(),
+        address: location.city(),
+        gmapAddress: `${location.streetAddress()}, ${location.state()}, ${location.city()}, ${location.country()}`,
+        phone: faker.phone.number(),
+        lat: location.latitude(),
+        lng: location.longitude(),
+        address: location.city(),
+        nation: location.country(),
+      })
+    })
+    return queryInterface.bulkInsert('stores', stores, {})
   },
 
   down: (queryInterface, Sequelize) => {
