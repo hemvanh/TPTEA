@@ -1,24 +1,14 @@
 'use strict'
-var {faker} = require('@faker-js/faker')
+const {getData, _d} = require('./utils')
 module.exports = {
   async up(queryInterface, Sequelize) {
-    var stores = [],
-      location = faker.location
-    Array.from({length: 10}).forEach(() => {
-      stores.push({
-        name: faker.person.fullName(),
-        address: location.city(),
-        gmapAddress: `${location.streetAddress()}, ${location.state()}, ${location.city()}, ${location.country()}`,
-        phone: faker.phone.number(),
-        lat: location.latitude(),
-        lng: location.longitude(),
-        address: location.city(),
-        nation: location.country(),
-      })
-    })
-    return queryInterface.bulkInsert('stores', stores, {})
+    var data = await getData('1qUFzIif4CFQ64-jf4OOtFQK8rKY7YHqN3PxSATHjy3w').catch(err => console.log(err))
+    return queryInterface.bulkInsert(
+      'stores',
+      _d.map(data, row => _d.pick(row, ['id', 'name', 'address', 'gmapaddress', 'phone', 'lat', 'lng', 'city', 'nation'])),
+      {}
+    )
   },
-
   down: (queryInterface, Sequelize) => {
     return queryInterface.bulkDelete('stores', null, {})
   },

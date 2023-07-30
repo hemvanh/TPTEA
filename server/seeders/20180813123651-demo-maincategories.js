@@ -1,24 +1,10 @@
 'use strict'
+const {getData, _d} = require('./utils')
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.bulkInsert(
-      'maincategories',
-      [
-        {
-          desc: 'Hot Drink',
-          img: 'main-category-hot.jpg',
-          name: 'Hot',
-        },
-        {
-          desc: 'Cold Drink',
-          img: 'main-category-cold.jpg',
-          name: 'Cold',
-        },
-      ],
-      {}
-    )
+    var data = await getData('1DulYEp9x5t33Beg7ys4ZadErrK9LcBaBN11tyca08KQ').catch(err => console.log(err))
+    return queryInterface.bulkInsert('maincategories', _d.map(data, row => _d.pick(row, ['id', 'name', 'desc', 'img'])), {})
   },
-
   down: (queryInterface, Sequelize) => {
     return queryInterface.bulkDelete('maincategories', null, {})
   },
