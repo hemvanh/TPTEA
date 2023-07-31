@@ -1,5 +1,5 @@
 'use strict'
-const {getData, _d} = require('./utils')
+const {getData, _d} = require('../util.seed')
 module.exports = {
   async up(queryInterface, Sequelize) {
     var data = await getData('1p_tzXdaZAXMR1dfnZyQPJBjfgM4WJ3NfVs2yKTIXbWg').catch(err => console.log(err))

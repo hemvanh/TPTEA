@@ -1,6 +1,6 @@
 const {GoogleSpreadsheet} = require('google-spreadsheet'),
   _d = require('lodash'),
-  creds = require('../TP-TEA-HK-4be78b7ad5f8.json'),
+  creds = require('./TP-TEA-HK-4be78b7ad5f8.json'),
   getData = async sheetId => {
     const doc = new GoogleSpreadsheet(sheetId)
     await doc.useServiceAccountAuth(creds)

@@ -1,4 +1,4 @@
-const {getData, _d} = require('./utils')
+const {getData, _d} = require('../util.seed')
 module.exports = {
   async up(queryInterface, Sequelize) {
     var data = await getData('1qFpMLDWABXh2JFg_h6VZbZt5OxslSuvjzS1Zn74uSag').catch(err => console.log(err))

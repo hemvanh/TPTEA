@@ -1,7 +1,7 @@
 <template>
   <q-card class="col-6 q-pa-xs no-shadow border-cat" @click.native="openMenusListing()">
     <q-card-media overlay-position="top">
-      <img :src="cat.img">
+      <img :src="getImagePath(cat.img)" alt="Category Image">
       <div class="card-title text-center">{{cat.name}}</div>
     </q-card-media>
   </q-card>
@@ -14,6 +14,9 @@ export default {
   methods: {
     openMenusListing() {
       this.$router.push('/order/menus/' + this.cat.id)
+    },
+    getImagePath(imageName) {
+      return `statics/${imageName}`
     },
   },
 }
