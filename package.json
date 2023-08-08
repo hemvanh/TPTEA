@@ -9,6 +9,7 @@
   "scripts": {
     "lint": "eslint --ext .js,.vue src",
     "ui":"quasar dev",
+    "serve":"quasar serve",
     "dev": "cd server && npx babel-node server | quasar dev",
     "api": "cd server && npx babel-node server",
     "build": "quasar build -m pwa && cd server && npx gulp es6",

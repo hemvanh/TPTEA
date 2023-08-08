@@ -4,8 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _models = require('../../models');
 
 var _lodash = require('lodash');
@@ -81,40 +79,20 @@ var resolvers = {
       var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(_, _ref4, _ref5) {
         var input = _ref4.input;
         var loggedInUser = _ref5.loggedInUser;
-        var img;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 (0, _util._authAdmin)(loggedInUser);
-
-                if (!(input.img === '')) {
-                  _context3.next = 5;
-                  break;
-                }
-
-                _context3.t0 = '';
-                _context3.next = 8;
-                break;
-
-              case 5:
-                _context3.next = 7;
-                return (0, _util.saveImage)(input.img);
-
-              case 7:
-                _context3.t0 = _context3.sent;
-
-              case 8:
-                img = _context3.t0;
                 return _context3.abrupt('return', _models.sequelize.transaction(function (t) {
-                  return _models.Menu.create(_extends({}, input, { img: img }), { transaction: t }).then(function (menu) {
+                  return _models.Menu.create(input, { transaction: t }).then(function (menu) {
                     return menu.addModifiers(input.modifierIds, { transaction: t }).then(function () {
                       return menu;
                     });
                   });
                 }));
 
-              case 10:
+              case 2:
               case 'end':
                 return _context3.stop();
             }
@@ -132,27 +110,11 @@ var resolvers = {
       var _ref9 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(_, _ref7, _ref8) {
         var input = _ref7.input;
         var loggedInUser = _ref8.loggedInUser;
-        var img;
         return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
                 (0, _util._authAdmin)(loggedInUser);
-
-                if (!(input.img.indexOf('base64') > 0)) {
-                  _context4.next = 6;
-                  break;
-                }
-
-                _context4.next = 4;
-                return (0, _util.saveImage)(input.img);
-
-              case 4:
-                img = _context4.sent;
-
-                input.img = img;
-
-              case 6:
                 return _context4.abrupt('return', _models.sequelize.transaction(function (t) {
                   return _models.Menu.update(input, { where: { id: input.id }, transaction: t }).then(function () {
                     var menu = new _models.Menu(input);
@@ -162,7 +124,7 @@ var resolvers = {
                   });
                 }));
 
-              case 7:
+              case 2:
               case 'end':
                 return _context4.stop();
             }

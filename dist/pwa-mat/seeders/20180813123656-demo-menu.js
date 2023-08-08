@@ -2,22 +2,9 @@
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-var GoogleSpreadsheet = require('google-spreadsheet');
-var _d = require('lodash');
-var creds = require('../TP-TEA-HK-4be78b7ad5f8.json');
-
-// Create a document object using the ID of the spreadsheet - obtained from its URL.
-var doc = new GoogleSpreadsheet('1p_tzXdaZAXMR1dfnZyQPJBjfgM4WJ3NfVs2yKTIXbWg');
-
-function getData() {
-  return new Promise(function (resolve, reject) {
-    doc.useServiceAccountAuth(creds, function (err) {
-      doc.getRows(1, function (err, rows) {
-        if (err) reject(err);else resolve(rows);
-      });
-    });
-  });
-}
+var _require = require('../util.seed'),
+    getData = _require.getData,
+    _d = _require._d;
 
 module.exports = {
   up: function () {
@@ -28,14 +15,14 @@ module.exports = {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return getData().catch(function (err) {
+              return getData('1p_tzXdaZAXMR1dfnZyQPJBjfgM4WJ3NfVs2yKTIXbWg').catch(function (err) {
                 return console.log(err);
               });
 
             case 2:
               data = _context.sent;
               return _context.abrupt('return', queryInterface.bulkInsert('menus', _d.map(data, function (row) {
-                return _d.pick(row, ['id', 'name', 'desc', 'price', 'img', 'categoryid']);
+                return _d.pick(row, ['id', 'name', 'desc', 'price', 'img', 'categoryId']);
               }), {}));
 
             case 4:
