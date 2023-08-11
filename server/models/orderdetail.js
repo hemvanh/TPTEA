@@ -1,7 +1,7 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
   var OrderDetail = sequelize.define(
-    'OrderDetail',
+    'orderdetail',
     {
       orderId: DataTypes.INTEGER,
       menuId: DataTypes.INTEGER,
@@ -13,10 +13,10 @@ module.exports = (sequelize, DataTypes) => {
   )
   OrderDetail.associate = function(models) {
     // associations can be defined here
-    OrderDetail.belongsTo(models.Menu, {
+    OrderDetail.belongsTo(models.menu, {
       foreignKey: 'menuId',
     })
-    OrderDetail.belongsTo(models.Order, {
+    OrderDetail.belongsTo(models.order, {
       foreignKey: 'orderId',
     })
   }

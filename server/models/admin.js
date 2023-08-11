@@ -1,7 +1,7 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
   var Admin = sequelize.define(
-    'Admin',
+    'admin',
     {
       username: DataTypes.STRING,
       password: DataTypes.STRING,

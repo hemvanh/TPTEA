@@ -1,7 +1,7 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
   var MainCategory = sequelize.define(
-    'MainCategory',
+    'maincategory',
     {
       name: DataTypes.STRING,
       desc: DataTypes.STRING,
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   )
   MainCategory.associate = models => {
     // associations can be defined here
-    MainCategory.hasMany(models.Category, {
+    MainCategory.hasMany(models.category, {
       foreignKey: 'mainCategoryId',
     })
   }

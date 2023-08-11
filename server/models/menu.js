@@ -1,7 +1,7 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
   var Menu = sequelize.define(
-    'Menu',
+    'menu',
     {
       name: DataTypes.STRING,
       desc: DataTypes.STRING,
@@ -12,14 +12,14 @@ module.exports = (sequelize, DataTypes) => {
   )
   Menu.associate = function(models) {
     // associations can be defined here
-    Menu.hasMany(models.OrderDetail, {
+    Menu.hasMany(models.orderdetail, {
       foreignKey: 'menuId',
     })
-    Menu.belongsToMany(models.Location, {
+    Menu.belongsToMany(models.location, {
       through: 'menulocation',
       foreignKey: 'menuId',
     })
-    Menu.belongsToMany(models.Modifier, {
+    Menu.belongsToMany(models.modifier, {
       through: 'menumodifier',
       foreignKey: 'menuId',
     })

@@ -1,7 +1,7 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
   var GiftCard = sequelize.define(
-    'GiftCard',
+    'giftcard',
     {
       code: DataTypes.STRING,
       customerId: DataTypes.INTEGER,
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   )
   GiftCard.associate = function(models) {
     // associations can be defined here
-    GiftCard.belongsTo(models.Customer)
+    GiftCard.belongsTo(models.customer)
   }
   return GiftCard
 }

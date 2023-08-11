@@ -1,7 +1,7 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
   var Location = sequelize.define(
-    'Location',
+    'location',
     {
       code: DataTypes.STRING,
       name: DataTypes.STRING,
@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   )
   Location.associate = function(models) {
     // associations can be defined here
-    Location.belongsToMany(models.Menu, {through: 'menulocation', foreignHey: 'locationId'})
+    Location.belongsToMany(models.menu, {through: 'menulocation', foreignHey: 'locationId'})
   }
   return Location
 }

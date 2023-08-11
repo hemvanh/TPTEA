@@ -1,7 +1,7 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
   var Order = sequelize.define(
-    'Order',
+    'order',
     {
       customerId: DataTypes.INTEGER,
       storeId: DataTypes.INTEGER,
@@ -16,16 +16,16 @@ module.exports = (sequelize, DataTypes) => {
   )
   Order.associate = function(models) {
     // associations can be defined here
-    Order.belongsTo(models.Customer, {
+    Order.belongsTo(models.customer, {
       foreignKey: 'customerId',
     })
-    Order.belongsTo(models.Store, {
+    Order.belongsTo(models.store, {
       foreignKey: 'storeId',
     })
-    Order.belongsTo(models.OrderStatus, {
+    Order.belongsTo(models.orderstatus, {
       foreignKey: 'orderStatusId',
     })
-    Order.hasMany(models.OrderDetail, {
+    Order.hasMany(models.orderdetail, {
       foreignKey: 'orderId',
     })
   }

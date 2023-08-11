@@ -1,7 +1,7 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
   const PushSubscription = sequelize.define(
-    'PushSubscription',
+    'pushsubscription',
     {
       endpoint: DataTypes.STRING,
       p256dh: DataTypes.STRING,

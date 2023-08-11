@@ -1,7 +1,7 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
   var MenuModifier = sequelize.define(
-    'MenuModifier',
+    'menumodifier',
     {
       menuId: DataTypes.INTEGER,
       modifierId: DataTypes.INTEGER,

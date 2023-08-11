@@ -1,7 +1,7 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
   var Customer = sequelize.define(
-    'Customer',
+    'customer',
     {
       name: DataTypes.STRING,
       address: DataTypes.STRING,
@@ -16,10 +16,10 @@ module.exports = (sequelize, DataTypes) => {
   )
   Customer.associate = function(models) {
     // associations can be defined here
-    Customer.hasMany(models.Order, {
+    Customer.hasMany(models.order, {
       foreignKey: 'customerId',
     })
-    Customer.hasMany(models.GiftCard, {
+    Customer.hasMany(models.giftcard, {
       foreignKey: 'customerId',
     })
   }
