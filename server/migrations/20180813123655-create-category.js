@@ -1,7 +1,7 @@
 'use strict'
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('categories', {
+    return queryInterface.createTable('Categories', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -20,7 +20,7 @@ module.exports = {
       mainCategoryId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'maincategories',
+          model: 'MainCategories',
           key: 'id',
         },
       },

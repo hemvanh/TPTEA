@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'menuId',
     })
     Menu.belongsToMany(models.Modifier, {
-      through: 'menumodifier',
+      through: 'MenuModifiers',
       foreignKey: 'menuId',
     })
   }

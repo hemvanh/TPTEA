@@ -4,12 +4,12 @@ module.exports = {
     return queryInterface.sequelize.transaction(t => {
       return Promise.all([
         queryInterface.addColumn(
-          'orders',
+          'Orders',
           'storeId',
           {
             type: Sequelize.INTEGER,
             references: {
-              model: 'stores',
+              model: 'Stores',
               key: 'id',
             },
             allowNull: true,
@@ -17,7 +17,7 @@ module.exports = {
           {transaction: t}
         ),
         queryInterface.addColumn(
-          'orders',
+          'Orders',
           'isStorePickUp',
           {
             type: Sequelize.BOOLEAN,
@@ -27,7 +27,7 @@ module.exports = {
           {transaction: t}
         ),
         queryInterface.addColumn(
-          'orders',
+          'Orders',
           'deliveryAddress',
           {
             type: Sequelize.STRING(500),
@@ -36,7 +36,7 @@ module.exports = {
           {transaction: t}
         ),
         queryInterface.addColumn(
-          'orders',
+          'Orders',
           'deliveryContact',
           {
             type: Sequelize.STRING(50),
@@ -45,7 +45,7 @@ module.exports = {
           {transaction: t}
         ),
         queryInterface.addColumn(
-          'orders',
+          'Orders',
           'receivingTime',
           {
             type: Sequelize.DATE,
@@ -55,7 +55,7 @@ module.exports = {
           {transaction: t}
         ),        
         queryInterface.addColumn(
-          'orders',
+          'Orders',
           'totalAmount',
           {
             type: Sequelize.FLOAT,
@@ -65,7 +65,7 @@ module.exports = {
           {transaction: t}
         ),
         queryInterface.addColumn(
-          'orders',
+          'Orders',
           'orderStatusId',
           {
             type: Sequelize.INTEGER,
@@ -79,13 +79,13 @@ module.exports = {
   down: (queryInterface, Sequelize) => {
     return queryInterface.sequelize.transaction(t => {
       return Promise.all([
-        queryInterface.removeColumn('orders', 'storeId', {transaction: t}),
-        queryInterface.removeColumn('orders', 'isStorePickUp', {transaction: t}),
-        queryInterface.removeColumn('orders', 'receivingTime', {transaction: t}),
-        queryInterface.removeColumn('orders', 'deliveryAddress', {transaction: t}),
-        queryInterface.removeColumn('orders', 'deliveryContact', {transaction: t}),
-        queryInterface.removeColumn('orders', 'totalAmount', {transaction: t}),
-        queryInterface.removeColumn('orders', 'orderStatusId', {transaction: t}),
+        queryInterface.removeColumn('Orders', 'storeId', {transaction: t}),
+        queryInterface.removeColumn('Orders', 'isStorePickUp', {transaction: t}),
+        queryInterface.removeColumn('Orders', 'receivingTime', {transaction: t}),
+        queryInterface.removeColumn('Orders', 'deliveryAddress', {transaction: t}),
+        queryInterface.removeColumn('Orders', 'deliveryContact', {transaction: t}),
+        queryInterface.removeColumn('Orders', 'totalAmount', {transaction: t}),
+        queryInterface.removeColumn('Orders', 'orderStatusId', {transaction: t}),
       ])
     })
   },

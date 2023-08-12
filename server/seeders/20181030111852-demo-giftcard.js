@@ -4,7 +4,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     var data = await getData('14ShSC1gocvbzP8RGP6lk03QxAejjRYK05cRnBr6Hv7k').catch(err => console.log(err))
     return queryInterface.bulkInsert(
-      'giftcards',
+      'GiftCards',
       _d.map(data, row => _d.pick(row, ['id', 'code', 'amount', 'expiry', 'createdat', 'updatedat', 'customerid', 'isprinted'])),
       {}
     )

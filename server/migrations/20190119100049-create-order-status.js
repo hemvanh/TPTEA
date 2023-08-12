@@ -19,6 +19,6 @@ module.exports = {
     })
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('OrderStatuses')
+    return queryInterface.dropTable('orderstatuses')
   },
 }
